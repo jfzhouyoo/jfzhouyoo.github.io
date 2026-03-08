@@ -47,7 +47,7 @@ const ContactSection = () => {
                     aria-label="Copy email"
                     title="Copy to clipboard"
                   >
-                    {copied ? <Check size={14} className="text-green-600" /> : <Copy size={14} />}
+                    {copied ? <Check size={14} className="text-primary" /> : <Copy size={14} />}
                   </button>
                 )}
               </div>
