@@ -13,43 +13,42 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 20% 12%;
 
-    --primary: 215 60% 34%;
+    --primary: 220 65% 36%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 40 15% 92%;
+    --secondary: 42 18% 90%;
     --secondary-foreground: 222 15% 25%;
 
     --muted: 40 12% 90%;
     --muted-foreground: 220 10% 48%;
 
-    --accent: 30 50% 52%;
+    --accent: 262 45% 42%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 12% 88%;
-    --input: 220 12% 88%;
-    --ring: 215 60% 34%;
+    --border: 220 14% 86%;
+    --input: 220 14% 86%;
+    --ring: 220 65% 36%;
 
     --radius: 0.5rem;
 
     --sidebar-background: 40 15% 96%;
     --sidebar-foreground: 220 15% 15%;
-    --sidebar-primary: 215 60% 34%;
+    --sidebar-primary: 220 65% 36%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 40 10% 90%;
     --sidebar-accent-foreground: 220 15% 15%;
     --sidebar-border: 220 10% 88%;
-    --sidebar-ring: 215 60% 34%;
+    --sidebar-ring: 220 65% 36%;
 
     --font-heading: 'Libre Baskerville', Georgia, serif;
     --font-body: 'Source Sans 3', 'Helvetica Neue', sans-serif;
 
-    --gradient-warm: linear-gradient(135deg, hsl(40 30% 96%), hsl(215 20% 95%));
     --shadow-soft: 0 1px 3px 0 hsl(220 15% 15% / 0.04), 0 1px 2px -1px hsl(220 15% 15% / 0.04);
     --shadow-card: 0 4px 20px -4px hsl(220 15% 15% / 0.08);
-    --shadow-elevated: 0 10px 40px -10px hsl(215 60% 34% / 0.12);
+    --shadow-elevated: 0 10px 40px -10px hsl(220 65% 36% / 0.15);
   }
 }
 
@@ -84,19 +83,12 @@
   }
 
   ::selection {
-    background: hsl(var(--primary) / 0.15);
+    background: hsl(var(--accent) / 0.15);
     color: hsl(var(--foreground));
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
   .glass {
     background: hsl(var(--background) / 0.65);
     backdrop-filter: blur(20px) saturate(180%);
@@ -104,7 +96,7 @@
   }
 
   .card-hover {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
   }
   .card-hover:hover {
     transform: translateY(-4px);
