@@ -11,11 +11,11 @@ const HomePage = () => {
       <NavBar />
 
       <div className="mx-auto max-w-5xl px-6">
-        <Section id="about" className="pt-28 pb-12">
+        <Section id="about" className="pt-28 pb-6">
           <HeroSection />
         </Section>
 
-        <Section id="publications">
+        <Section id="publications" className="py-14">
           <PublicationsSection />
         </Section>
 

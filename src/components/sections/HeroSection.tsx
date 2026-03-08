@@ -15,7 +15,7 @@ const socialLinks = [
 ];
 
 const HeroSection = () => (
-  <div className="flex flex-col md:flex-row gap-12 items-start">
+  <div className="flex flex-col md:flex-row gap-10 items-start">
     {/* Profile image */}
     <div className="relative flex-shrink-0 group">
       <div className="absolute -inset-2.5 rounded-2xl bg-gradient-to-br from-primary/12 via-accent/8 to-primary/6 opacity-60 group-hover:opacity-100 blur-md transition-all duration-700" />
