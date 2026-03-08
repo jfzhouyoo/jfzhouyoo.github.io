@@ -35,7 +35,7 @@ const NavBar = () => {
         <a
           href="#about"
           onClick={(e) => { e.preventDefault(); scrollTo("about"); }}
-          className="font-heading text-lg font-bold text-foreground tracking-tight hover:no-underline hover:text-foreground"
+          className="font-heading text-lg font-bold text-foreground tracking-tight hover:text-foreground"
         >
           Your Name
         </a>
@@ -46,13 +46,13 @@ const NavBar = () => {
                 onClick={() => scrollTo(s.id)}
                 className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeId === s.id
-                    ? "text-primary bg-primary/8"
+                    ? "text-accent"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {s.label}
                 {activeId === s.id && (
-                  <span className="absolute bottom-0.5 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-primary transition-all duration-300" />
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-accent transition-all duration-300" />
                 )}
               </button>
             </li>
