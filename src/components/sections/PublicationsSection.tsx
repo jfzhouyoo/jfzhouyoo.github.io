@@ -84,7 +84,7 @@ const PublicationsSection = () => {
         <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
       </div>
 
-      <ol className="space-y-1">
+      <StaggerContainer className="space-y-1">
         {publications.map((pub, i) => {
           const isExpanded = expandedIdx === i;
           return (
