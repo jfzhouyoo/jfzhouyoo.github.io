@@ -16,27 +16,30 @@ const socialLinks = [
 
 const HeroSection = () => (
   <div className="flex flex-col md:flex-row gap-10 items-start">
-    {/* Profile image */}
-    <div className="relative flex-shrink-0 group">
-      <div className="absolute -inset-2.5 rounded-2xl bg-gradient-to-br from-primary/12 via-accent/8 to-primary/6 opacity-60 group-hover:opacity-100 blur-md transition-all duration-700" />
-      <img
-        src={profileImg}
-        alt="Profile photo"
-        className="relative w-40 h-40 rounded-2xl object-cover border border-border shadow-[var(--shadow-card)]"
-      />
+    {/* Avatar */}
+    <div className="flex-shrink-0">
+      <div className="w-40 h-40 rounded-xl bg-card p-1.5 shadow-sm">
+        <img
+          src={profileImg}
+          alt="Profile photo"
+          className="w-full h-full rounded-[0.625rem] object-cover"
+        />
+      </div>
     </div>
 
-    <div className="flex-1 space-y-6">
-      <div>
+    <div className="flex-1 space-y-5">
+      {/* Name & affiliation */}
+      <div className="pt-1">
         <h1 className="text-4xl md:text-[2.75rem] font-heading font-bold leading-tight tracking-tight">
           Your Name
         </h1>
-        <p className="text-muted-foreground mt-2.5 flex items-center gap-2 text-sm">
+        <p className="text-muted-foreground mt-1 flex items-center gap-2 text-sm">
           <MapPin size={14} className="text-accent" />
           Ph.D. Candidate · Department of Computer Science · University Name
         </p>
       </div>
 
+      {/* Bio */}
       <p className="text-foreground/85 leading-relaxed max-w-2xl text-[15px]">
         My research focuses on <strong className="text-foreground font-semibold">machine learning</strong>,{" "}
         <strong className="text-foreground font-semibold">natural language processing</strong>, and{" "}
@@ -47,12 +50,12 @@ const HeroSection = () => (
         </a>.
       </p>
 
-      {/* Actions */}
-      <div className="flex flex-wrap items-center gap-3">
+      {/* Action row */}
+      <div className="flex items-center gap-2 pt-1">
         <a
           href="/files/cv.pdf"
           download
-          className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-lg bg-primary text-primary-foreground text-sm font-semibold shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-elevated)] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300"
+          className="inline-flex items-center gap-2 px-5 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-semibold shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300"
         >
           <FileDown size={15} />
           Download CV
@@ -63,7 +66,7 @@ const HeroSection = () => (
             href={href}
             target={href.startsWith("mailto") ? undefined : "_blank"}
             rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-            className="p-2.5 rounded-lg border border-border text-muted-foreground hover:text-accent hover:border-accent/40 hover:bg-accent/5 hover:-translate-y-0.5 transition-all duration-300"
+            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-all duration-200"
             aria-label={label}
           >
             <Icon size={17} strokeWidth={1.8} />
@@ -72,13 +75,13 @@ const HeroSection = () => (
       </div>
 
       {/* Research interests */}
-      <div className="pt-2">
-        <h2 className="text-base font-heading font-bold mb-3 text-foreground/90">Research Interests</h2>
-        <div className="flex flex-wrap gap-2">
+      <div className="pt-4">
+        <h2 className="text-base font-heading font-bold mb-2.5 text-foreground/90">Research Interests</h2>
+        <div className="flex flex-wrap gap-1.5">
           {interests.map((t) => (
             <span
               key={t}
-              className="text-xs px-3.5 py-1.5 rounded-full bg-secondary text-secondary-foreground font-medium border border-border hover:border-accent/40 hover:bg-accent/8 hover:text-accent hover:-translate-y-px transition-all duration-300 cursor-default"
+              className="text-xs px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground font-medium"
             >
               {t}
             </span>
