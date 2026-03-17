@@ -1,4 +1,4 @@
-import { useFadeIn } from "@/hooks/useFadeIn";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 interface SectionProps {
@@ -7,21 +7,32 @@ interface SectionProps {
   className?: string;
 }
 
-const Section = ({ id, children, className }: SectionProps) => {
-  const { ref, visible } = useFadeIn();
+const sectionVariants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: "spring",
+      damping: 25,
+      stiffness: 120,
+      mass: 0.8,
+    },
+  },
+};
 
+const Section = ({ id, children, className }: SectionProps) => {
   return (
-    <section
+    <motion.section
       id={id}
-      ref={ref}
-      className={cn(
-        "scroll-mt-20 py-6 transition-all duration-700 ease-out",
-        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
-        className
-      )}
+      variants={sectionVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      className={cn("scroll-mt-20 py-6", className)}
     >
       {children}
-    </section>
+    </motion.section>
   );
 };
 
