@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ExternalLink, ChevronDown, BookOpen, Code, FileText } from "lucide-react";
+import { StaggerContainer, StaggerItem } from "@/components/FadeInView";
 
 interface Publication {
   title: string;
