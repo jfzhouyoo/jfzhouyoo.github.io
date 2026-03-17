@@ -148,7 +148,6 @@ const PublicationsSection = () => {
                   {pub.abstract}
                 </p>
               </div>
-              </div>
             </div>
             </StaggerItem>
           );
