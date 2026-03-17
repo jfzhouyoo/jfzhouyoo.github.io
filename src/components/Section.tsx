@@ -28,7 +28,7 @@ const Section = ({ id, children, className }: SectionProps) => {
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: false, amount: 0.2 }}
       className={cn("scroll-mt-20 py-6", className)}
     >
       {children}
