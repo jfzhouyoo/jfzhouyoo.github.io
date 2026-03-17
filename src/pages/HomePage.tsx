@@ -11,19 +11,19 @@ const HomePage = () => {
       <NavBar />
 
       <div className="mx-auto max-w-5xl px-6">
-        <Section id="about" className="pt-28 pb-6">
+        <Section id="about" className="pt-24 pb-4">
           <HeroSection />
         </Section>
 
-        <Section id="publications" className="py-14">
+        <Section id="publications" className="py-8">
           <PublicationsSection />
         </Section>
 
-        <Section id="projects">
+        <Section id="projects" className="py-8">
           <ProjectsSection />
         </Section>
 
-        <Section id="contact" className="pb-24">
+        <Section id="contact" className="pt-8 pb-16">
           <ContactSection />
         </Section>
       </div>
