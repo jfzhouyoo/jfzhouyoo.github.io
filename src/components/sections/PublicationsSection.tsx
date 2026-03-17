@@ -92,7 +92,6 @@ const PublicationsSection = () => {
               key={i}
             >
             <div className="group relative rounded-xl px-6 py-5 -mx-2 hover:bg-card hover:shadow-[var(--shadow-card)] transition-all duration-300">
-            >
               {/* Venue badge + year */}
               <div className="absolute top-5 right-5 flex items-center gap-2">
                 <span className="text-[10px] font-bold tracking-wider text-accent/80 bg-accent/8 px-2 py-0.5 rounded-full uppercase">
