@@ -88,9 +88,10 @@ const PublicationsSection = () => {
         {publications.map((pub, i) => {
           const isExpanded = expandedIdx === i;
           return (
-            <li
+            <StaggerItem
               key={i}
-              className="group relative rounded-xl px-6 py-5 -mx-2 hover:bg-card hover:shadow-[var(--shadow-card)] transition-all duration-300"
+            >
+            <div className="group relative rounded-xl px-6 py-5 -mx-2 hover:bg-card hover:shadow-[var(--shadow-card)] transition-all duration-300">
             >
               {/* Venue badge + year */}
               <div className="absolute top-5 right-5 flex items-center gap-2">
