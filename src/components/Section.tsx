@@ -15,7 +15,7 @@ const Section = ({ id, children, className }: SectionProps) => {
       id={id}
       ref={ref}
       className={cn(
-        "scroll-mt-20 py-10 transition-all duration-700 ease-out",
+        "scroll-mt-20 py-6 transition-all duration-700 ease-out",
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
         className
       )}
