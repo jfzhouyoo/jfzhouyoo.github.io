@@ -2,6 +2,7 @@ import projectLlm from "@/assets/project-llm-eval.jpg";
 import projectFair from "@/assets/project-fairnlp.jpg";
 import projectPortfolio from "@/assets/project-portfolio.jpg";
 import { ArrowUpRight } from "lucide-react";
+import { StaggerContainer, StaggerItem } from "@/components/FadeInView";
 
 const projects = [
   {
