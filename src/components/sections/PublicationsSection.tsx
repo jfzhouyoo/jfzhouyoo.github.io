@@ -149,10 +149,12 @@ const PublicationsSection = () => {
                   {pub.abstract}
                 </p>
               </div>
-            </li>
+              </div>
+            </div>
+            </StaggerItem>
           );
         })}
-      </ol>
+      </StaggerContainer>
     </div>
   );
 };

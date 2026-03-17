@@ -80,8 +80,9 @@ const ProjectsSection = () => (
             </div>
           </div>
         </a>
+        </StaggerItem>
       ))}
-    </div>
+    </StaggerContainer>
   </div>
 );
 
