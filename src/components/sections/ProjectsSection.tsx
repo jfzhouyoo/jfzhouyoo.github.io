@@ -2,6 +2,7 @@ import projectLlm from "@/assets/project-llm-eval.jpg";
 import projectFair from "@/assets/project-fairnlp.jpg";
 import projectPortfolio from "@/assets/project-portfolio.jpg";
 import { ArrowUpRight } from "lucide-react";
+import { StaggerContainer, StaggerItem } from "@/components/FadeInView";
 
 const projects = [
   {
@@ -34,8 +35,9 @@ const ProjectsSection = () => (
       <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
     </div>
 
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <StaggerContainer className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {projects.map((p) => (
+        <StaggerItem key={p.title}>
         <a
           key={p.title}
           href={p.url}
@@ -78,8 +80,9 @@ const ProjectsSection = () => (
             </div>
           </div>
         </a>
+        </StaggerItem>
       ))}
-    </div>
+    </StaggerContainer>
   </div>
 );
 
