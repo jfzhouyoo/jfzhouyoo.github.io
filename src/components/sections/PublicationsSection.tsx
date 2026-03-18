@@ -76,16 +76,19 @@ const linkIcon = (label: string) => {
 
 const PublicationsSection = () => {
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
+  const [showAll, setShowAll] = useState(false);
+
+  const visiblePubs = publications.slice(0, showAll ? publications.length : 10);
 
   return (
     <div>
-      <div className="flex items-center gap-4 mb-10">
+      <div className="flex items-center gap-4 mb-5">
         <h2 className="text-2xl font-heading font-bold whitespace-nowrap">Publications</h2>
         <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
       </div>
 
       <StaggerContainer className="space-y-1">
-        {publications.map((pub, i) => {
+        {visiblePubs.map((pub, i) => {
           const isExpanded = expandedIdx === i;
           return (
             <StaggerItem
