@@ -1,13 +1,6 @@
 import profileImg from "@/assets/profile-placeholder.png";
 import { FileDown, Mail, Github, GraduationCap, MapPin } from "lucide-react";
 
-const interests = [
-  "Machine Learning",
-  "Natural Language Processing",
-  "Computational Social Science",
-  "Fairness & Interpretability",
-];
-
 const socialLinks = [
   { icon: Mail, href: "mailto:your.email@university.edu", label: "Email" },
   { icon: Github, href: "https://github.com/yourusername", label: "GitHub" },
@@ -15,7 +8,7 @@ const socialLinks = [
 ];
 
 const HeroSection = () => (
-  <div className="flex flex-col md:flex-row items-center md:items-start gap-8 pb-4">
+  <div className="flex flex-col md:flex-row items-center gap-8 pb-2">
     {/* Avatar */}
     <div className="flex-shrink-0">
       <div className="w-40 h-40 rounded-xl bg-white p-2 shadow-md border border-border/40">
@@ -29,7 +22,7 @@ const HeroSection = () => (
 
     <div className="flex-1 flex flex-col">
       {/* Name & affiliation */}
-      <div className="-mt-1">
+      <div>
         <h1 className="text-4xl md:text-[2.75rem] font-heading font-bold leading-tight tracking-tight">
           Your Name
         </h1>
@@ -40,7 +33,7 @@ const HeroSection = () => (
       </div>
 
       {/* Bio */}
-      <p className="text-foreground/85 leading-relaxed max-w-2xl text-[15px] mt-6">
+      <p className="text-foreground/85 leading-relaxed max-w-2xl text-[15px] mt-4">
         My research focuses on <strong className="text-foreground font-semibold">machine learning</strong>,{" "}
         <strong className="text-foreground font-semibold">natural language processing</strong>, and{" "}
         <strong className="text-foreground font-semibold">computational social science</strong>.
@@ -51,7 +44,7 @@ const HeroSection = () => (
       </p>
 
       {/* Integrated Action Row */}
-      <div className="flex items-center gap-4 mt-8">
+      <div className="flex items-center gap-4 mt-5">
         <a
           href="/files/cv.pdf"
           download
@@ -72,21 +65,6 @@ const HeroSection = () => (
             >
               <Icon size={17} strokeWidth={1.8} />
             </a>
-          ))}
-        </div>
-      </div>
-
-      {/* Research interests */}
-      <div className="mt-10">
-        <h2 className="text-base font-heading font-bold mb-3 text-foreground/90">Research Interests</h2>
-        <div className="flex flex-wrap gap-3">
-          {interests.map((t) => (
-            <span
-              key={t}
-              className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground font-medium"
-            >
-              {t}
-            </span>
           ))}
         </div>
       </div>
