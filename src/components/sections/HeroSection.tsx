@@ -15,10 +15,10 @@ const socialLinks = [
 ];
 
 const HeroSection = () => (
-  <div className="flex flex-col md:flex-row items-center md:items-start gap-12 pb-16">
+  <div className="flex flex-col md:flex-row items-center md:items-start gap-8 pb-16">
     {/* Avatar */}
     <div className="flex-shrink-0">
-      <div className="w-40 h-40 rounded-xl bg-card p-2 shadow-sm">
+      <div className="w-40 h-40 rounded-xl bg-white p-2 shadow-md border border-border/40">
         <img
           src={profileImg}
           alt="Profile photo"
@@ -29,7 +29,7 @@ const HeroSection = () => (
 
     <div className="flex-1 flex flex-col">
       {/* Name & affiliation */}
-      <div>
+      <div className="-mt-1">
         <h1 className="text-4xl md:text-[2.75rem] font-heading font-bold leading-tight tracking-tight">
           Your Name
         </h1>
@@ -60,14 +60,14 @@ const HeroSection = () => (
           <FileDown size={15} />
           Download CV
         </a>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           {socialLinks.map(({ icon: Icon, href, label }) => (
             <a
               key={label}
               href={href}
               target={href.startsWith("mailto") ? undefined : "_blank"}
               rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-              className="p-2 rounded-lg text-accent hover:text-accent-foreground hover:bg-accent/10 transition-all duration-200"
+              className="p-2 rounded-lg border-0 text-accent hover:text-accent-foreground hover:bg-accent/10 transition-all duration-200"
               aria-label={label}
             >
               <Icon size={17} strokeWidth={1.8} />
@@ -77,13 +77,13 @@ const HeroSection = () => (
       </div>
 
       {/* Research interests */}
-      <div className="mt-16">
+      <div className="mt-10">
         <h2 className="text-base font-heading font-bold mb-3 text-foreground/90">Research Interests</h2>
         <div className="flex flex-wrap gap-3">
           {interests.map((t) => (
             <span
               key={t}
-              className="text-xs px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground font-medium"
+              className="text-xs px-3 py-1.5 rounded-full bg-muted text-muted-foreground font-medium"
             >
               {t}
             </span>
