@@ -156,6 +156,19 @@ const PublicationsSection = () => {
           );
         })}
       </StaggerContainer>
+
+      {publications.length > 10 && (
+        <button
+          onClick={() => setShowAll(!showAll)}
+          className="mt-4 mx-auto flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+        >
+          {showAll ? "Show Less" : "Show More"}
+          <ChevronDown
+            size={14}
+            className={`transition-transform duration-300 ${showAll ? "rotate-180" : ""}`}
+          />
+        </button>
+      )}
     </div>
   );
 };

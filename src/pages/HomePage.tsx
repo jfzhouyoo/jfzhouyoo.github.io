@@ -3,6 +3,7 @@ import Section from "@/components/Section";
 import HeroSection from "@/components/sections/HeroSection";
 import PublicationsSection from "@/components/sections/PublicationsSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
+import HonorsSection from "@/components/sections/HonorsSection";
 import ContactSection from "@/components/sections/ContactSection";
 
 const HomePage = () => {
@@ -21,6 +22,10 @@ const HomePage = () => {
 
         <Section id="projects" className="py-4">
           <ProjectsSection />
+        </Section>
+
+        <Section id="honors" className="py-4">
+          <HonorsSection />
         </Section>
 
         <Section id="contact" className="pt-4 pb-16">
