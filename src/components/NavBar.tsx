@@ -26,7 +26,7 @@ const NavBar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`print:hidden fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
           ? "glass border-b border-border/50 shadow-[var(--shadow-soft)]"
           : "bg-transparent"
@@ -47,13 +47,13 @@ const NavBar = () => {
                 onClick={() => scrollTo(s.id)}
                 className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeId === s.id
-                    ? "text-accent"
+                    ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {s.label}
                 {activeId === s.id && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-accent transition-all duration-300" />
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-foreground transition-all duration-300" />
                 )}
               </button>
             </li>
