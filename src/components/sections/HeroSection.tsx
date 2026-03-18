@@ -15,7 +15,7 @@ const socialLinks = [
 ];
 
 const HeroSection = () => (
-  <div className="flex flex-col md:flex-row items-center md:items-start gap-8 pb-16">
+  <div className="flex flex-col md:flex-row items-center md:items-start gap-8 pb-4">
     {/* Avatar */}
     <div className="flex-shrink-0">
       <div className="w-40 h-40 rounded-xl bg-white p-2 shadow-md border border-border/40">
