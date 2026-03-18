@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ExternalLink, ChevronDown, BookOpen, Code, FileText } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ExternalLink, ChevronDown, Code, FileText } from "lucide-react";
 import { StaggerContainer, StaggerItem } from "@/components/FadeInView";
 
 interface Publication {
@@ -8,7 +8,6 @@ interface Publication {
   venue: string;
   venueShort: string;
   year: number;
-  abstract: string;
   links: { label: string; url: string }[];
 }
 
@@ -19,8 +18,6 @@ const publications: Publication[] = [
     venue: "Association for Computational Linguistics",
     venueShort: "ACL",
     year: 2026,
-    abstract:
-      "We present a comprehensive framework for evaluating large language model alignment across multiple dimensions including safety, helpfulness, and truthfulness. Our approach introduces novel metrics that capture subtle misalignment patterns missed by existing benchmarks, and demonstrates significant improvements in evaluation reliability across diverse model families.",
     links: [
       { label: "Paper", url: "#" },
       { label: "Code", url: "#" },
@@ -33,8 +30,6 @@ const publications: Publication[] = [
     venue: "Empirical Methods in Natural Language Processing",
     venueShort: "EMNLP",
     year: 2024,
-    abstract:
-      "This paper proposes a novel debiasing technique for text classification models that mitigates demographic biases while preserving task performance. We introduce a contrastive learning objective that disentangles protected attributes from semantic content in the representation space.",
     links: [
       { label: "Paper", url: "#" },
       { label: "Code", url: "#" },
@@ -46,13 +41,10 @@ const publications: Publication[] = [
     venue: "Journal of Artificial Intelligence Research",
     venueShort: "JAIR",
     year: 2023,
-    abstract:
-      "We provide a comprehensive survey of interpretability and explainability methods for neural NLP models. We categorize existing approaches into probing, attention analysis, and feature attribution methods, and evaluate their faithfulness across different model architectures.",
     links: [{ label: "Paper", url: "#" }],
   },
 ];
 
-/** Bold "Your Name" in author strings */
 const highlightAuthor = (authors: string, name = "Your Name") => {
   const parts = authors.split(name);
   if (parts.length === 1) return <>{authors}</>;
@@ -75,51 +67,56 @@ const linkIcon = (label: string) => {
 };
 
 const PublicationsSection = () => {
-  const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
   const [showAll, setShowAll] = useState(false);
+  const [isPrinting, setIsPrinting] = useState(false);
 
-  const visiblePubs = publications.slice(0, showAll ? publications.length : 10);
+  useEffect(() => {
+    const onBefore = () => setIsPrinting(true);
+    const onAfter = () => setIsPrinting(false);
+    window.addEventListener("beforeprint", onBefore);
+    window.addEventListener("afterprint", onAfter);
+    return () => {
+      window.removeEventListener("beforeprint", onBefore);
+      window.removeEventListener("afterprint", onAfter);
+    };
+  }, []);
+
+  const visiblePubs = isPrinting ? publications : publications.slice(0, showAll ? publications.length : 10);
 
   return (
     <div>
       <div className="flex items-center gap-4 mb-5">
-        <h2 className="text-2xl font-heading font-bold whitespace-nowrap">Publications</h2>
-        <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
+        <h2 className="text-2xl font-heading font-bold whitespace-nowrap print:text-black">Publications</h2>
+        <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent print:from-black/20" />
       </div>
 
       <StaggerContainer className="space-y-1">
-        {visiblePubs.map((pub, i) => {
-          const isExpanded = expandedIdx === i;
-          return (
-            <StaggerItem
-              key={i}
-            >
-            <div className="group relative rounded-xl px-6 py-5 -mx-2 hover:bg-card hover:shadow-[var(--shadow-card)] transition-all duration-300">
-              {/* Venue badge + year */}
-              <div className="absolute top-5 right-5 flex items-center gap-2">
-                <span className="text-[10px] font-bold tracking-wider text-accent/80 bg-accent/8 px-2 py-0.5 rounded-full uppercase">
+        {visiblePubs.map((pub, i) => (
+          <StaggerItem key={i}>
+            <div className="group relative rounded-xl px-6 py-5 -mx-2 hover:bg-card hover:shadow-[var(--shadow-card)] transition-all duration-300 print:break-inside-avoid print:px-0 print:py-3 print:hover:bg-transparent print:hover:shadow-none">
+              <div className="absolute top-5 right-5 flex items-center gap-2 print:top-3 print:right-0">
+                <span className="text-[10px] font-bold tracking-wider text-muted-foreground bg-secondary px-2 py-0.5 rounded-full uppercase print:text-black">
                   {pub.venueShort}
                 </span>
-                <span className="text-[11px] font-semibold text-muted-foreground/50 tabular-nums">
+                <span className="text-[11px] font-semibold text-muted-foreground/50 tabular-nums print:text-black">
                   {pub.year}
                 </span>
               </div>
 
-              <p className="font-heading font-semibold text-[15px] leading-snug pr-28 group-hover:text-primary transition-colors duration-300">
+              <p className="font-heading font-semibold text-[15px] leading-snug pr-28 group-hover:text-foreground transition-colors duration-300 print:text-black">
                 {pub.title}
               </p>
-              <p className="text-sm text-muted-foreground mt-1.5">
+              <p className="text-sm text-muted-foreground mt-1.5 print:text-black">
                 {highlightAuthor(pub.authors)}
               </p>
-              <p className="text-sm text-muted-foreground/70 italic">{pub.venue}</p>
+              <p className="text-sm text-muted-foreground/70 italic print:text-black/70">{pub.venue}</p>
 
-              {/* Resource links + abstract toggle */}
-              <div className="flex items-center gap-2 mt-3">
+              <div className="flex items-center gap-2 mt-3 print:hidden">
                 {pub.links.map((l) => (
                   <a
                     key={l.label}
                     href={l.url}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary/80 hover:text-accent px-2.5 py-1 rounded-md bg-primary/5 hover:bg-accent/10 hover:-translate-y-px transition-all duration-200"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-foreground/70 hover:text-foreground px-2.5 py-1 rounded-md bg-secondary hover:bg-muted hover:-translate-y-px transition-all duration-200"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -127,40 +124,16 @@ const PublicationsSection = () => {
                     {l.label}
                   </a>
                 ))}
-                <button
-                  onClick={() => setExpandedIdx(isExpanded ? null : i)}
-                  className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground hover:text-accent px-2.5 py-1 rounded-md hover:bg-accent/8 transition-all duration-200 ml-auto"
-                  aria-expanded={isExpanded}
-                >
-                  <BookOpen size={11} />
-                  Abstract
-                  <ChevronDown
-                    size={12}
-                    className={`transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
-                  />
-                </button>
-              </div>
-
-              {/* Expandable abstract */}
-              <div
-                className={`overflow-hidden transition-all duration-400 ease-out ${
-                  isExpanded ? "max-h-48 opacity-100 mt-3" : "max-h-0 opacity-0 mt-0"
-                }`}
-              >
-                <p className="text-sm text-muted-foreground leading-relaxed pl-4 border-l-2 border-accent/30 py-1">
-                  {pub.abstract}
-                </p>
               </div>
             </div>
-            </StaggerItem>
-          );
-        })}
+          </StaggerItem>
+        ))}
       </StaggerContainer>
 
       {publications.length > 10 && (
         <button
           onClick={() => setShowAll(!showAll)}
-          className="mt-4 mx-auto flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+          className="print:hidden mt-4 mx-auto flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
         >
           {showAll ? "Show Less" : "Show More"}
           <ChevronDown
