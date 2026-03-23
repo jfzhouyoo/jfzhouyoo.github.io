@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         heading: ['Libre Baskerville', 'Georgia', 'serif'],
         body: ['Source Sans 3', 'Helvetica Neue', 'sans-serif'],
+        mono: ['IBM Plex Mono', 'Consolas', 'monospace'],
       },
       colors: {
         border: "hsl(var(--border))",

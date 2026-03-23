@@ -2,7 +2,7 @@ import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { useState, useEffect } from "react";
 
 const sections = [
-  { id: "about", label: "About Me" },
+  { id: "about", label: "About" },
   { id: "publications", label: "Publications" },
   { id: "projects", label: "Projects" },
   { id: "honors", label: "Honors" },
@@ -28,32 +28,32 @@ const NavBar = () => {
     <header
       className={`print:hidden fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "glass border-b border-border/50 shadow-[var(--shadow-soft)]"
+          ? "glass border-b border-foreground/10"
           : "bg-transparent"
       }`}
     >
-      <nav className="relative mx-auto max-w-5xl flex items-center justify-between px-6 h-16">
+      <nav className="relative mx-auto max-w-5xl flex items-center justify-between px-6 h-14">
         <a
           href="#about"
           onClick={(e) => { e.preventDefault(); scrollTo("about"); }}
-          className="font-heading text-lg font-bold text-foreground tracking-tight hover:text-foreground"
+          className="font-mono text-xs font-medium tracking-[0.2em] uppercase text-foreground"
         >
-          Your Name
+          YOUR NAME
         </a>
-        <ul className="flex items-center gap-0.5">
+        <ul className="flex items-center gap-0">
           {sections.map((s) => (
             <li key={s.id}>
               <button
                 onClick={() => scrollTo(s.id)}
-                className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                className={`relative px-3 py-2 font-mono text-[11px] tracking-wider uppercase transition-all duration-300 ${
                   activeId === s.id
-                    ? "text-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-foreground font-medium"
+                    : "text-foreground/40 hover:text-foreground"
                 }`}
               >
                 {s.label}
                 {activeId === s.id && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-foreground transition-all duration-300" />
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-foreground" />
                 )}
               </button>
             </li>

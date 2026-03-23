@@ -61,9 +61,9 @@ const highlightAuthor = (authors: string, name = "Your Name") => {
 };
 
 const linkIcon = (label: string) => {
-  if (label.toLowerCase().includes("code")) return <Code size={10} />;
-  if (label.toLowerCase().includes("arxiv")) return <FileText size={10} />;
-  return <ExternalLink size={10} />;
+  if (label.toLowerCase().includes("code")) return <Code size={10} strokeWidth={1.5} />;
+  if (label.toLowerCase().includes("arxiv")) return <FileText size={10} strokeWidth={1.5} />;
+  return <ExternalLink size={10} strokeWidth={1.5} />;
 };
 
 const PublicationsSection = () => {
@@ -85,38 +85,39 @@ const PublicationsSection = () => {
 
   return (
     <div>
-      <div className="flex items-center gap-4 mb-5">
+      {/* Schematic section header */}
+      <div className="flex items-center gap-4 mb-6">
         <h2 className="text-2xl font-heading font-bold whitespace-nowrap print:text-black">Publications</h2>
-        <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent print:from-black/20" />
+        <div className="flex-1 schematic-divider" />
       </div>
 
-      <StaggerContainer className="space-y-1">
+      <StaggerContainer className="space-y-0">
         {visiblePubs.map((pub, i) => (
           <StaggerItem key={i}>
-            <div className="group relative rounded-xl px-6 py-5 -mx-2 hover:bg-card hover:shadow-[var(--shadow-card)] transition-all duration-300 print:break-inside-avoid print:px-0 print:py-3 print:hover:bg-transparent print:hover:shadow-none">
-              <div className="absolute top-5 right-5 flex items-center gap-2 print:top-3 print:right-0">
-                <span className="text-[10px] font-bold tracking-wider text-muted-foreground bg-secondary px-2 py-0.5 rounded-full uppercase print:text-black">
+            <div className="group relative border-b border-foreground/8 py-5 hover:bg-foreground/[0.02] transition-all duration-300 print:break-inside-avoid print:py-3">
+              <div className="absolute top-5 right-0 flex items-center gap-3 print:top-3">
+                <span className="font-mono text-[10px] font-medium tracking-widest text-foreground/40 uppercase print:text-black">
                   {pub.venueShort}
                 </span>
-                <span className="text-[11px] font-semibold text-muted-foreground/50 tabular-nums print:text-black">
+                <span className="font-mono text-[11px] text-foreground/25 tabular-nums print:text-black">
                   {pub.year}
                 </span>
               </div>
 
-              <p className="font-heading font-semibold text-[15px] leading-snug pr-28 group-hover:text-foreground transition-colors duration-300 print:text-black">
+              <p className="font-heading font-semibold text-[15px] leading-snug pr-32 group-hover:text-foreground transition-colors duration-300 print:text-black">
                 {pub.title}
               </p>
-              <p className="text-sm text-muted-foreground mt-1.5 print:text-black">
+              <p className="font-mono text-xs text-foreground/40 mt-1.5 print:text-black">
                 {highlightAuthor(pub.authors)}
               </p>
-              <p className="text-sm text-muted-foreground/70 italic print:text-black/70">{pub.venue}</p>
+              <p className="font-mono text-xs text-foreground/30 italic print:text-black/70">{pub.venue}</p>
 
               <div className="flex items-center gap-2 mt-3 print:hidden">
                 {pub.links.map((l) => (
                   <a
                     key={l.label}
                     href={l.url}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-foreground/70 hover:text-foreground px-2.5 py-1 rounded-md bg-secondary hover:bg-muted hover:-translate-y-px transition-all duration-200"
+                    className="inline-flex items-center gap-1.5 font-mono text-[10px] font-medium tracking-wider uppercase text-foreground/50 hover:text-foreground border border-foreground/15 hover:border-foreground px-2.5 py-1 neon-hover transition-all duration-300"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -133,11 +134,12 @@ const PublicationsSection = () => {
       {publications.length > 10 && (
         <button
           onClick={() => setShowAll(!showAll)}
-          className="print:hidden mt-4 mx-auto flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+          className="print:hidden mt-4 mx-auto flex items-center gap-1.5 font-mono text-[10px] tracking-wider uppercase text-foreground/40 hover:text-foreground transition-colors duration-200"
         >
           {showAll ? "Show Less" : "Show More"}
           <ChevronDown
-            size={14}
+            size={12}
+            strokeWidth={1.5}
             className={`transition-transform duration-300 ${showAll ? "rotate-180" : ""}`}
           />
         </button>
