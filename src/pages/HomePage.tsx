@@ -33,9 +33,9 @@ const HomePage = () => {
         </Section>
       </div>
 
-      <footer className="border-t border-border/60 py-8 text-center">
-        <p className="text-xs text-muted-foreground tracking-wide">
-          © {new Date().getFullYear()} Your Name · Built with React & Tailwind CSS
+      <footer className="border-t border-foreground/10 py-8 text-center">
+        <p className="font-mono text-[10px] text-foreground/25 tracking-[0.2em] uppercase">
+          © {new Date().getFullYear()} Your Name · Built with precision
         </p>
       </footer>
     </div>
