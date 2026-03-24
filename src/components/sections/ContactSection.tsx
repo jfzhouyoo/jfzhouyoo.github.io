@@ -21,7 +21,7 @@ const ContactSection = () => {
         {/* Office */}
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <MapPin size={13} strokeWidth={1.2} className="text-foreground/40" />
+            <MapPin size={13} strokeWidth={1.2} className="text-[#ea4335]" />
             <h3 className="font-mono text-[10px] font-medium tracking-[0.2em] uppercase text-foreground/40">Office</h3>
           </div>
           <p className="text-foreground/70 text-[15px] leading-relaxed">
@@ -34,7 +34,7 @@ const ContactSection = () => {
         {/* Email */}
         <div>
           <div className="flex items-center gap-2 mb-3">
-            <Mail size={13} strokeWidth={1.2} className="text-foreground/40" />
+            <Mail size={13} strokeWidth={1.2} className="text-[#ea4335]" />
             <h3 className="font-mono text-[10px] font-medium tracking-[0.2em] uppercase text-foreground/40">Email</h3>
           </div>
           <div className="flex items-center gap-2 group">

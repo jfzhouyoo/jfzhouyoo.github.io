@@ -66,7 +66,7 @@ const ProjectsSection = () => {
                 <img
                   src={p.image}
                   alt={p.title}
-                  className="w-full h-full object-cover grayscale transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:scale-105 print:grayscale-0"
+                  className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 print:hidden" />
                 <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 print:hidden">
