@@ -26,7 +26,7 @@ const HeroSection = () => (
         <h1 className="text-4xl md:text-[2.75rem] font-heading font-bold leading-tight tracking-tight print:text-black">
           Your Name
         </h1>
-        <p className="text-foreground/40 mt-1.5 flex items-center gap-2 font-mono text-xs tracking-wide print:text-black">
+        <p className="text-foreground/60 mt-1.5 flex items-center gap-2 font-mono text-xs tracking-wide print:text-black">
           <MapPin size={12} strokeWidth={1.5} />
           Ph.D. Candidate · Dept. of Computer Science · University Name
         </p>
@@ -60,7 +60,7 @@ const HeroSection = () => (
               href={href}
               target={href.startsWith("mailto") ? undefined : "_blank"}
               rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-              className="p-2.5 text-foreground/40 hover:text-foreground transition-all duration-300"
+              className="p-2.5 text-foreground hover:opacity-60 transition-all duration-300"
               aria-label={label}
             >
               <Icon size={16} strokeWidth={1.2} />
