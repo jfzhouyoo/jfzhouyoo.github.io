@@ -48,7 +48,7 @@ const NavBar = () => {
                 className={`relative px-3 py-2 font-mono text-[11px] tracking-wider uppercase transition-all duration-300 ${
                   activeId === s.id
                     ? "text-foreground font-medium"
-                    : "text-foreground/70 hover:text-foreground"
+                    : "text-foreground/40 hover:text-foreground"
                 }`}
               >
                 {s.label}

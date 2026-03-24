@@ -74,7 +74,7 @@ const HonorsSection = () => {
       {awards.length > 10 && (
         <button
           onClick={() => setShowAll(!showAll)}
-          className="print:hidden mt-4 mx-auto flex items-center gap-1.5 text-sm font-medium text-foreground/70 hover:text-foreground transition-colors duration-200"
+          className="print:hidden mt-4 mx-auto flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
         >
           {showAll ? "Show Less" : "Show More"}
           <ChevronDown
