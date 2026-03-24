@@ -96,10 +96,10 @@ const PublicationsSection = () => {
           <StaggerItem key={i}>
             <div className="group relative border-b border-foreground/8 py-5 hover:bg-foreground/[0.02] transition-all duration-300 print:break-inside-avoid print:py-3">
               <div className="absolute top-5 right-0 flex items-center gap-3 print:top-3">
-                <span className="font-mono text-[10px] font-medium tracking-widest text-foreground/40 uppercase print:text-black">
+                <span className="font-mono text-[10px] font-medium tracking-widest text-foreground/70 uppercase print:text-black">
                   {pub.venueShort}
                 </span>
-                <span className="font-mono text-[11px] text-foreground/25 tabular-nums print:text-black">
+                <span className="font-mono text-[11px] text-foreground/50 tabular-nums print:text-black">
                   {pub.year}
                 </span>
               </div>
@@ -107,7 +107,7 @@ const PublicationsSection = () => {
               <p className="font-heading font-semibold text-[15px] leading-snug pr-32 group-hover:text-foreground transition-colors duration-300 print:text-black">
                 {pub.title}
               </p>
-              <p className="font-mono text-xs text-foreground/40 mt-1.5 print:text-black">
+              <p className="font-mono text-xs text-foreground/60 mt-1.5 print:text-black">
                 {highlightAuthor(pub.authors)}
               </p>
               <p className="font-mono text-xs text-foreground/30 italic print:text-black/70">{pub.venue}</p>
@@ -117,7 +117,7 @@ const PublicationsSection = () => {
                   <a
                     key={l.label}
                     href={l.url}
-                    className="inline-flex items-center gap-1.5 font-mono text-[10px] font-medium tracking-wider uppercase text-foreground/50 hover:text-foreground border border-foreground/15 hover:border-foreground px-2.5 py-1 neon-hover transition-all duration-300"
+                    className="inline-flex items-center gap-1.5 font-mono text-[10px] font-medium tracking-wider uppercase text-foreground border border-foreground/30 hover:border-foreground hover:bg-foreground hover:text-background px-2.5 py-1 neon-hover transition-all duration-300"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -134,7 +134,7 @@ const PublicationsSection = () => {
       {publications.length > 10 && (
         <button
           onClick={() => setShowAll(!showAll)}
-          className="print:hidden mt-4 mx-auto flex items-center gap-1.5 font-mono text-[10px] tracking-wider uppercase text-foreground/40 hover:text-foreground transition-colors duration-200"
+          className="print:hidden mt-4 mx-auto flex items-center gap-1.5 font-mono text-[10px] tracking-wider uppercase text-foreground/70 hover:text-foreground transition-colors duration-200"
         >
           {showAll ? "Show Less" : "Show More"}
           <ChevronDown

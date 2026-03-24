@@ -80,14 +80,14 @@ const ProjectsSection = () => {
                 <h3 className="font-heading font-bold text-sm print:text-black">
                   {p.title}
                 </h3>
-                <p className="font-mono text-[10px] text-foreground/40 mt-2 leading-relaxed line-clamp-2 print:text-black/70">
+                <p className="font-mono text-[10px] text-foreground/60 mt-2 leading-relaxed line-clamp-2 print:text-black/70">
                   {p.description}
                 </p>
                 <div className="flex flex-wrap gap-1.5 mt-3">
                   {p.tags.map((t) => (
                     <span
                       key={t}
-                      className="font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 border border-foreground/15 text-foreground/50 print:text-black print:border-black/20"
+                      className="font-mono text-[9px] tracking-wider uppercase px-2 py-0.5 border border-foreground/25 text-foreground/80 print:text-black print:border-black/20"
                     >
                       {t}
                     </span>
@@ -102,7 +102,7 @@ const ProjectsSection = () => {
       {projects.length > 3 && (
         <button
           onClick={() => setShowAll(!showAll)}
-          className="print:hidden mt-6 mx-auto flex items-center gap-1.5 font-mono text-[10px] tracking-wider uppercase text-foreground/40 hover:text-foreground transition-colors duration-200"
+          className="print:hidden mt-6 mx-auto flex items-center gap-1.5 font-mono text-[10px] tracking-wider uppercase text-foreground/70 hover:text-foreground transition-colors duration-200"
         >
           {showAll ? "Show Less" : "Show More"}
           <ChevronDown
