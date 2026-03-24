@@ -2,9 +2,9 @@ import profileImg from "@/assets/profile-placeholder.png";
 import { FileDown, Mail, Github, GraduationCap, MapPin } from "lucide-react";
 
 const socialLinks = [
-  { icon: Mail, href: "mailto:your.email@university.edu", label: "Email" },
-  { icon: Github, href: "https://github.com/yourusername", label: "GitHub" },
-  { icon: GraduationCap, href: "https://scholar.google.com/", label: "Google Scholar" },
+  { icon: Mail, href: "mailto:your.email@university.edu", label: "Email", color: "text-[#ea4335]" },
+  { icon: Github, href: "https://github.com/yourusername", label: "GitHub", color: "text-[#24292e]" },
+  { icon: GraduationCap, href: "https://scholar.google.com/", label: "Google Scholar", color: "text-[#4285f4]" },
 ];
 
 const HeroSection = () => (
@@ -15,7 +15,7 @@ const HeroSection = () => (
         <img
           src={profileImg}
           alt="Profile photo"
-          className="w-full h-full object-cover grayscale"
+          className="w-full h-full object-cover"
         />
       </div>
     </div>
@@ -54,13 +54,13 @@ const HeroSection = () => (
           Download CV
         </a>
         <div className="flex items-center gap-0 print:hidden">
-          {socialLinks.map(({ icon: Icon, href, label }) => (
+        {socialLinks.map(({ icon: Icon, href, label, color }) => (
             <a
               key={label}
               href={href}
               target={href.startsWith("mailto") ? undefined : "_blank"}
               rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-              className="p-2.5 text-foreground/40 hover:text-foreground transition-all duration-300"
+              className={`p-2.5 ${color} hover:opacity-70 transition-all duration-300`}
               aria-label={label}
             >
               <Icon size={16} strokeWidth={1.2} />

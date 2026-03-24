@@ -35,13 +35,13 @@ const AcademicSidebar = () => {
       </div>
 
       <div className="flex gap-3 mt-4 justify-center w-full">
-        <a href="mailto:your.email@university.edu" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Email">
+        <a href="mailto:your.email@university.edu" className="text-[#ea4335] hover:opacity-70 transition-colors" aria-label="Email">
           <Mail size={18} />
         </a>
-        <a href="https://github.com/yourusername" className="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/yourusername" className="text-[#24292e] hover:opacity-70 transition-colors" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
           <Github size={18} />
         </a>
-        <a href="https://scholar.google.com/" className="text-muted-foreground hover:text-primary transition-colors" aria-label="Google Scholar" target="_blank" rel="noopener noreferrer">
+        <a href="https://scholar.google.com/" className="text-[#4285f4] hover:opacity-70 transition-colors" aria-label="Google Scholar" target="_blank" rel="noopener noreferrer">
           <GraduationCap size={18} />
         </a>
       </div>
