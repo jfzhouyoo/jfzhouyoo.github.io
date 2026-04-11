@@ -25,9 +25,7 @@ const ContactSection = () => {
             <h3 className="font-mono text-[10px] font-medium tracking-[0.2em] uppercase text-foreground/40">Office</h3>
           </div>
           <p className="text-foreground/70 text-[15px] leading-relaxed">
-            Room 123, CS Building
-            <br />
-            University Name
+            Tsinghua University
           </p>
         </div>
 
@@ -39,13 +37,13 @@ const ContactSection = () => {
           </div>
           <div className="flex items-center gap-2 group">
             <a
-              href="mailto:your.email@university.edu"
+              href="mailto:zjf23@mails.tsinghua.edu.cn"
               className="font-mono text-sm text-foreground border-b border-foreground/20 hover:border-foreground neon-hover transition-all duration-200"
             >
-              your.email@university.edu
+              zjf23@mails.tsinghua.edu.cn
             </a>
             <button
-              onClick={() => handleCopy("your.email@university.edu")}
+              onClick={() => handleCopy("zjf23@mails.tsinghua.edu.cn")}
               className="opacity-0 group-hover:opacity-100 p-1 text-foreground/30 hover:text-foreground transition-all duration-200"
               aria-label="Copy email"
               title="Copy to clipboard"
