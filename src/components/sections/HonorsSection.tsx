@@ -11,23 +11,28 @@ interface Award {
 const awards: Award[] = [
   {
     year: 2025,
-    title: "Outstanding Research Award",
-    organization: "Association for Computational Linguistics (ACL)",
+    title: 'Second Prize in the 43rd "Challenge Cup"',
+    organization: "Tsinghua University",
   },
   {
     year: 2024,
-    title: "Best Paper Award",
-    organization: "Conference on Empirical Methods in NLP (EMNLP)",
+    title: "Doctoral Research Incentive Program (17 Awardees Worldwide)",
+    organization: "Chinese Institute of Electronics (CIE) & Tencent",
+  },
+  {
+    year: 2024,
+    title: "Outstanding Poster Award",
+    organization: "The 3rd National Conference on Large Language Model Generation (CIPS-LLMG 2024)",
   },
   {
     year: 2023,
-    title: "Graduate Research Fellowship",
-    organization: "National Science Foundation (NSF)",
+    title: "Outstanding Master's Thesis Award",
+    organization: "Chinese Institute of Electronics (CIE)",
   },
   {
     year: 2022,
-    title: "Dean's List Scholar",
-    organization: "University Name, College of Engineering",
+    title: "National Scholarship for Graduate Students",
+    organization: "Ministry of Education of China",
   },
 ];
 
