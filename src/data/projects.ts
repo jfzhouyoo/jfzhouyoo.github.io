@@ -1,25 +1,29 @@
 import rawContent from "../content/projects.md?raw";
-import projectLlm      from "@/assets/project-llm-eval.jpg";
-import projectFair     from "@/assets/project-fairnlp.jpg";
-import projectPortfolio from "@/assets/project-portfolio.jpg";
+
+// Auto-discover all project cover images: src/assets/project-{key}.{ext}
+// To add a new cover: drop the file → set  image: {key}  in projects.md
+const imageModules = import.meta.glob<{ default: string }>(
+  "../assets/project-*.{jpg,jpeg,png,svg,webp}",
+  { eager: true },
+);
+const imageMap: Record<string, string> = {};
+for (const [path, mod] of Object.entries(imageModules)) {
+  const filename = path.split("/").pop()!;
+  const stem = filename.replace(/^project-/, "").replace(/\.[^.]+$/, "");
+  imageMap[stem] = mod.default;
+}
 
 export interface Project {
   title: string;
   description: string;
   tags: string[];
-  /** Resolved image URL (handled by the component layer) */
+  /** Resolved cover image URL */
   image?: string;
   url?: string;
   github?: string;
   year?: number;
   status?: "active" | "completed";
 }
-
-const imageMap: Record<string, string> = {
-  "llm-eval": projectLlm,
-  fairnlp:    projectFair,
-  portfolio:  projectPortfolio,
-};
 
 function parse(raw: string): Project[] {
   return raw

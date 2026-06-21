@@ -1,19 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowUpRight, ChevronDown, Github } from "lucide-react";
-import projectLlm from "@/assets/project-llm-eval.jpg";
-import projectFair from "@/assets/project-fairnlp.jpg";
-import projectPortfolio from "@/assets/project-portfolio.jpg";
 import { projects, type Project } from "@/data/projects";
-
-const imageMap: Record<string, string> = {
-  "llm-eval": projectLlm,
-  fairnlp: projectFair,
-  portfolio: projectPortfolio,
-};
-
-const resolveImage = (p: Project): string | undefined =>
-  p.imageKey ? imageMap[p.imageKey] : undefined;
 
 const INITIAL_COUNT = 3;
 
@@ -38,7 +26,7 @@ const ProjectsSection = () => {
   const extraProjects = isPrinting ? [] : projects.slice(INITIAL_COUNT);
 
   const renderCard = (p: Project, index: number) => {
-    const img = resolveImage(p);
+    const img = p.image;
     const href = p.url && p.url !== "#" ? p.url : p.github;
     return (
       <div className="group block overflow-hidden node-card bg-background print:break-inside-avoid">

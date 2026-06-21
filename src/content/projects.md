@@ -9,7 +9,20 @@
 #   status      — active | completed
 #   url         — project page or demo URL
 #   github      — GitHub repository URL
-#   image       — asset key: llm-eval | fairnlp | portfolio
+#   image       — cover image key (see below)
+#
+# HOW TO ADD A COVER IMAGE
+# ─────────────────────────
+#   1. Put the image in  src/assets/project-{key}.jpg  (or .png / .svg / .webp)
+#      Example:  src/assets/project-socialeval.jpg
+#   2. Set  image: {key}  in the entry below
+#      Example:  image: socialeval
+#   No code changes needed — the image is picked up automatically.
+#
+# Current cover images (default placeholders, replace any time):
+#   image: llm-eval    →  src/assets/project-llm-eval.jpg
+#   image: fairnlp     →  src/assets/project-fairnlp.jpg
+#   image: portfolio   →  src/assets/project-portfolio.jpg
 
 title: LLM-Eval Toolkit
 description: Open-source framework for evaluating large language models across safety, helpfulness, and factuality.
