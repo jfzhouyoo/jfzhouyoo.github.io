@@ -193,8 +193,6 @@ const publications: Publication[] = [
 
 const AUTHOR_NAME = "Jinfeng Zhou";
 
-const isFirstAuthor = (authors: string) => authors.trimStart().startsWith(AUTHOR_NAME);
-
 const highlightAuthor = (authors: string) => {
   const parts = authors.split(AUTHOR_NAME);
   if (parts.length === 1) return <>{authors}</>;
@@ -264,23 +262,13 @@ const PublicationsSection = () => {
 
       <StaggerContainer className="space-y-0">
         {visiblePubs.map((pub, i) => {
-          const first = isFirstAuthor(pub.authors);
           return (
             <StaggerItem key={i}>
               <div
-                className={`group relative flex items-stretch gap-0 py-5 hover:bg-foreground/[0.015] transition-all duration-300 print:break-inside-avoid print:py-3 ${
+                className={`group relative py-5 hover:bg-foreground/[0.015] transition-all duration-300 print:break-inside-avoid print:py-3 ${
                   i < visiblePubs.length - 1 ? "border-b border-foreground/8" : ""
                 }`}
               >
-                {/* First-author accent bar */}
-                <div
-                  className={`w-0.5 flex-shrink-0 mr-4 rounded-full transition-all duration-300 self-stretch ${
-                    first
-                      ? "bg-foreground/35 group-hover:bg-foreground/55"
-                      : "bg-foreground/8 group-hover:bg-foreground/15"
-                  } print:hidden`}
-                />
-
                 <div className="flex-1 min-w-0">
                   {/* Index + Title + Badge */}
                   <div className="flex items-start gap-3">
@@ -357,17 +345,19 @@ const PublicationsSection = () => {
       </StaggerContainer>
 
       {publications.length > INITIAL_COUNT && !isPrinting && (
-        <button
-          onClick={() => setShowAll(!showAll)}
-          className="print:hidden mt-5 mx-auto flex items-center gap-1.5 font-mono text-[10px] tracking-wider uppercase text-foreground/40 hover:text-foreground border border-foreground/15 hover:border-foreground/35 px-4 py-2 transition-all duration-200 hover:bg-foreground/[0.02]"
-        >
-          {showAll ? "Show Less" : `Show ${publications.length - INITIAL_COUNT} More Papers`}
-          <ChevronDown
-            size={12}
-            strokeWidth={1.5}
-            className={`transition-transform duration-300 ${showAll ? "rotate-180" : ""}`}
-          />
-        </button>
+        <div className="print:hidden flex justify-center mt-6">
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wider uppercase text-foreground/40 hover:text-foreground border border-foreground/15 hover:border-foreground/35 px-5 py-2 transition-all duration-200 hover:bg-foreground/[0.02]"
+          >
+            {showAll ? "Show Less" : `Show More (${publications.length - INITIAL_COUNT})`}
+            <ChevronDown
+              size={12}
+              strokeWidth={1.5}
+              className={`transition-transform duration-300 ${showAll ? "rotate-180" : ""}`}
+            />
+          </button>
+        </div>
       )}
     </div>
   );
