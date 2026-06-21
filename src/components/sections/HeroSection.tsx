@@ -45,14 +45,14 @@ const HeroSection = () => (
 
       {/* Action Row */}
       <div className="flex items-center gap-4 mt-6">
-        <a
-          href="/files/cv.pdf"
-          download
+        <button
+          onClick={() => window.print()}
           className="print:hidden inline-flex items-center gap-2 px-5 py-2 border border-foreground bg-foreground text-background font-mono text-xs font-medium tracking-wider uppercase neon-hover hover:bg-background hover:text-foreground transition-all duration-300"
+          title="Opens browser print dialog — save as PDF"
         >
           <FileDown size={13} strokeWidth={1.5} />
           Download CV
-        </a>
+        </button>
         <div className="flex items-center gap-0 print:hidden">
         {socialLinks.map(({ icon: Icon, href, label, color }) => (
             <a

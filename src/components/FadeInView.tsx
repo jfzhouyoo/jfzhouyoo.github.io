@@ -37,7 +37,7 @@ export const FadeInView = ({ children, className }: FadeInViewProps) => (
     variants={itemVariants}
     initial="hidden"
     whileInView="visible"
-    viewport={{ once: false, amount: 0.2 }}
+    viewport={{ once: true, amount: 0.1 }}
     className={className}
   >
     {children}
@@ -50,7 +50,7 @@ export const StaggerContainer = ({ children, className }: { children: ReactNode;
     variants={containerVariants}
     initial="hidden"
     whileInView="visible"
-    viewport={{ once: false, amount: 0.2 }}
+    viewport={{ once: true, amount: 0.05 }}
     className={className}
   >
     {children}
