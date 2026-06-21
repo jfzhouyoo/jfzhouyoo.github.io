@@ -1,165 +1,36 @@
-import { FileDown, ArrowLeft } from "lucide-react";
+import { FileDown, ArrowLeft, ExternalLink, Github } from "lucide-react";
+import { publications, AUTHOR_NAME, type Publication } from "@/data/publications";
+import { awards } from "@/data/awards";
+import { projects } from "@/data/projects";
+import { profile } from "@/data/profile";
 
-const cvData = {
-  name: "Jinfeng Zhou",
-  title: "Ph.D. Candidate",
-  department: "Department of Computer Science and Technology",
-  university: "Tsinghua University",
-  email: "zjf23@mails.tsinghua.edu.cn",
-  github: "https://github.com/jfzhouyoo",
-  scholar: "https://scholar.google.com/",
-  researchInterests:
-    "Social intelligence evaluation, emotional AI, conversational systems, and large language model alignment and evaluation.",
-  education: [
-    {
-      degree: "Ph.D. in Computer Science and Technology",
-      institution: "Tsinghua University",
-      period: "2023 – Present",
-      detail: "Advisor: Prof. Minlie Huang · CoAI Group",
-    },
-    {
-      degree: "M.S. in Computer Science",
-      institution: "Tianjin University",
-      period: "2020 – 2023",
-      detail: "Outstanding Master's Thesis Award",
-    },
-    {
-      degree: "B.S. in Computer Science",
-      institution: "Tianjin University",
-      period: "2016 – 2020",
-      detail: "",
-    },
-  ],
-  publications: [
-    {
-      authors: "Jinfeng Zhou, Yuxuan Chen, Yihan Shi, et al.",
-      title: "SocialEval: Evaluating Social Intelligence of Large Language Models.",
-      venue: "ACL 2025",
-      url: "https://aclanthology.org/2025.acl-long.1496/",
-    },
-    {
-      authors: "Jinfeng Zhou, Yuxuan Chen, Jianing Yin, et al.",
-      title: "Crisp: Cognitive Restructuring of Negative Thoughts through Multi-turn Supportive Dialogues.",
-      venue: "EMNLP 2025",
-      url: "https://aclanthology.org/2025.emnlp-main.1652/",
-    },
-    {
-      authors: "Bosi Wen, Pei Ke, Yufei Sun, Cunxiang Wang, Xiaotao Gu, Jinfeng Zhou, et al.",
-      title: "HPSS: Heuristic Prompting Strategy Search for LLM Evaluators.",
-      venue: "ACL Findings 2025",
-      url: "https://aclanthology.org/2025.findings-acl.1282/",
-    },
-    {
-      authors: "Jinfeng Zhou, Yongkang Huang, Bosi Wen, et al.",
-      title: "CharacterBench: Benchmarking Character Customization of Large Language Models.",
-      venue: "AAAI 2025",
-      url: "https://ojs.aaai.org/index.php/AAAI/article/view/34806",
-    },
-    {
-      authors: "Jinfeng Zhou, Zheyu Chen, Shuai Wang, et al.",
-      title: "Think Socially via Cognitive Reasoning.",
-      venue: "arXiv 2025",
-      url: "https://arxiv.org/abs/2509.22546",
-    },
-    {
-      authors: "Sahand Sabour, Siyang Liu, Zheyuan Zhang, June Liu, Jinfeng Zhou, et al.",
-      title: "EmoBench: Evaluating the Emotional Intelligence of Large Language Models.",
-      venue: "ACL 2024",
-      url: "https://aclanthology.org/2024.acl-long.326/",
-    },
-    {
-      authors: "Zhuang Chen, Jincenzi Wu, Jinfeng Zhou, et al.",
-      title: "ToMBench: Benchmarking Theory of Mind in Large Language Models.",
-      venue: "ACL 2024",
-      url: "https://aclanthology.org/2024.acl-long.847/",
-    },
-    {
-      authors: "Jinfeng Zhou, Zhuang Chen, Dazhen Wan, et al.",
-      title: "CharacterGLM: Customizing Social Characters with Large Language Models.",
-      venue: "EMNLP 2024",
-      url: "https://aclanthology.org/2024.emnlp-industry.107/",
-    },
-    {
-      authors: "Zhuang Chen, Jiawen Deng, Jinfeng Zhou, et al.",
-      title: "Depression Detection in Clinical Interviews with LLM-Empowered Structural Element Graph.",
-      venue: "NAACL 2024",
-      url: "https://aclanthology.org/2024.naacl-long.452/",
-    },
-    {
-      authors: "Jinfeng Zhou, Zhuang Chen, Bo Wang, Minlie Huang.",
-      title: "Facilitating Multi-turn Emotional Support Conversation with Positive Emotion Elicitation: A Reinforcement Learning Approach.",
-      venue: "ACL 2023",
-      url: "https://aclanthology.org/2023.acl-long.96/",
-    },
-    {
-      authors: "Jinfeng Zhou, Chujie Zheng, Bo Wang, Zheng Zhang, Minlie Huang.",
-      title: "CASE: Aligning Coarse-to-Fine Cognition and Affection for Empathetic Response Generation.",
-      venue: "ACL 2023",
-      url: "https://aclanthology.org/2023.acl-long.457/",
-    },
-    {
-      authors: "Jinfeng Zhou, Bo Wang, Zhitong Yang, et al.",
-      title: "CR-GIS: Improving Conversational Recommendation via Goal-aware Interest Sequence Modeling.",
-      venue: "COLING 2022",
-      url: "https://aclanthology.org/2022.coling-1.32/",
-    },
-    {
-      authors: "Zhitong Yang, Bo Wang, Jinfeng Zhou, et al.",
-      title: "TopKG: Target-oriented Dialog via Global Planning on Knowledge Graph.",
-      venue: "COLING 2022",
-      url: "https://aclanthology.org/2022.coling-1.62/",
-    },
-    {
-      authors: "Chujie Zheng, Jinfeng Zhou, Yinhe Zheng, et al.",
-      title: "CDConv: A Benchmark for Contradiction Detection in Chinese Conversations.",
-      venue: "EMNLP 2022",
-      url: "https://aclanthology.org/2022.emnlp-main.2/",
-    },
-    {
-      authors: "Jinfeng Zhou, Bo Wang, Minlie Huang, et al.",
-      title: "Aligning Recommendation and Conversation via Dual Imitation.",
-      venue: "EMNLP 2022",
-      url: "https://aclanthology.org/2022.emnlp-main.36/",
-    },
-    {
-      authors: "Jinfeng Zhou, Bo Wang, Ruifang He, Yuexian Hou.",
-      title: "CRFR: Improving Conversational Recommender Systems via Flexible Fragments Reasoning on Knowledge Graphs.",
-      venue: "EMNLP 2021",
-      url: "https://aclanthology.org/2021.emnlp-main.355/",
-    },
-  ],
-  awards: [
-    {
-      year: 2025,
-      title: 'Second Prize in the 43rd "Challenge Cup"',
-      org: "Tsinghua University",
-    },
-    {
-      year: 2024,
-      title: "Doctoral Research Incentive Program (17 Awardees Worldwide)",
-      org: "Chinese Institute of Electronics (CIE) & Tencent",
-    },
-    {
-      year: 2024,
-      title: "Outstanding Poster Award",
-      org: "The 3rd National Conference on Large Language Model Generation (CIPS-LLMG 2024)",
-    },
-    {
-      year: 2023,
-      title: "Outstanding Master's Thesis Award",
-      org: "Chinese Institute of Electronics (CIE)",
-    },
-    {
-      year: 2022,
-      title: "National Scholarship for Graduate Students",
-      org: "Ministry of Education of China",
-    },
-  ],
+/* ── Helper: render authors with Jinfeng Zhou bolded + markers ── */
+const renderAuthors = (pub: Publication) => {
+  const { authors, coFirst, corresponding } = pub;
+  const parts = authors.split(AUTHOR_NAME);
+  if (parts.length === 1) return <>{authors}</>;
+  const markers = [coFirst && "†", corresponding && "*"].filter(Boolean).join("");
+  return (
+    <>
+      {parts.map((part, i) => (
+        <span key={i}>
+          {i > 0 && (
+            <>
+              <strong className="font-bold text-black">{AUTHOR_NAME}</strong>
+              {markers && (
+                <sup className="text-[9px] font-mono ml-px">{markers}</sup>
+              )}
+            </>
+          )}
+          {part}
+        </span>
+      ))}
+    </>
+  );
 };
 
-const Divider = () => (
-  <div className="border-t border-black/15 my-5" />
-);
+/* ── Layout primitives ── */
+const Divider = () => <div className="border-t border-black/15 my-5" />;
 
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
   <h2 className="text-[11px] font-bold tracking-[0.18em] uppercase text-black/50 mb-3">
@@ -167,7 +38,12 @@ const SectionTitle = ({ children }: { children: React.ReactNode }) => (
   </h2>
 );
 
+/* ── Page ── */
 const CVPage = () => {
+  const hasCoFirst = publications.some((p) => p.coFirst);
+  const hasCorresponding = publications.some((p) => p.corresponding);
+  const hasMarkers = hasCoFirst || hasCorresponding;
+
   return (
     <div className="min-h-screen bg-[#f5f5f0] print:bg-white">
       {/* Control bar — hidden when printing */}
@@ -196,26 +72,36 @@ const CVPage = () => {
           <div className="flex items-start justify-between gap-8 pb-6 border-b-2 border-black">
             <div>
               <h1 className="text-[2.2rem] font-bold tracking-tight leading-none text-black">
-                {cvData.name}
+                {profile.name}
               </h1>
               <p className="mt-2 text-[14px] text-black/60">
-                {cvData.title} · {cvData.department}
+                {profile.title} · {profile.department}
               </p>
-              <p className="text-[14px] text-black/60">{cvData.university}</p>
+              <p className="text-[14px] text-black/60">{profile.university}</p>
             </div>
             <div className="text-right text-[12px] text-black/55 space-y-0.5 flex-shrink-0">
               <p>
-                <a href={`mailto:${cvData.email}`} className="hover:underline">
-                  {cvData.email}
+                <a href={`mailto:${profile.email}`} className="hover:underline">
+                  {profile.email}
                 </a>
               </p>
               <p>
-                <a href={cvData.github} target="_blank" rel="noopener noreferrer" className="hover:underline">
-                  github.com/jfzhouyoo
+                <a
+                  href={profile.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
+                  {profile.github.replace("https://", "")}
                 </a>
               </p>
               <p>
-                <a href={cvData.scholar} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                <a
+                  href={profile.scholar}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                >
                   Google Scholar
                 </a>
               </p>
@@ -226,7 +112,7 @@ const CVPage = () => {
           <div className="mt-6">
             <SectionTitle>Research Interests</SectionTitle>
             <p className="text-[13.5px] text-black/80 leading-relaxed">
-              {cvData.researchInterests}
+              {profile.researchInterests}
             </p>
           </div>
 
@@ -236,7 +122,7 @@ const CVPage = () => {
           <div>
             <SectionTitle>Education</SectionTitle>
             <div className="space-y-3.5">
-              {cvData.education.map((edu, i) => (
+              {profile.education.map((edu, i) => (
                 <div key={i} className="flex items-start gap-6">
                   <span className="font-mono text-[11px] text-black/40 tabular-nums flex-shrink-0 w-28 text-right mt-0.5">
                     {edu.period}
@@ -261,19 +147,19 @@ const CVPage = () => {
           <div>
             <SectionTitle>Publications</SectionTitle>
             <ol className="space-y-3">
-              {cvData.publications.map((pub, i) => (
+              {publications.map((pub, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <span className="font-mono text-[11px] text-black/35 tabular-nums flex-shrink-0 w-5 text-right mt-0.5">
                     {i + 1}.
                   </span>
                   <div className="text-[12.5px] leading-relaxed text-black/75">
-                    <span>{pub.authors} </span>
+                    <span>{renderAuthors(pub)} </span>
                     <span className="font-semibold text-black">
                       &ldquo;{pub.title}&rdquo;
                     </span>{" "}
-                    <span className="italic text-black/55">{pub.venue}.</span>{" "}
+                    <span className="italic text-black/55">{pub.venueShort}.</span>{" "}
                     <a
-                      href={pub.url}
+                      href={pub.links[0]?.url}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-black/40 hover:text-black underline underline-offset-2 text-[11px] print:hidden"
@@ -284,15 +170,83 @@ const CVPage = () => {
                 </li>
               ))}
             </ol>
+            {hasMarkers && (
+              <p className="mt-3 text-[11px] text-black/45 italic">
+                {hasCoFirst && "† Equal contribution"}
+                {hasCoFirst && hasCorresponding && " · "}
+                {hasCorresponding && "* Corresponding author"}
+              </p>
+            )}
           </div>
 
           <Divider />
+
+          {/* ── Projects ── */}
+          {projects.length > 0 && (
+            <>
+              <div>
+                <SectionTitle>Projects</SectionTitle>
+                <div className="space-y-3">
+                  {projects.map((p, i) => (
+                    <div key={i} className="flex items-start gap-6">
+                      <span className="font-mono text-[11px] text-black/40 tabular-nums flex-shrink-0 w-10 text-right mt-0.5">
+                        {p.year ?? ""}
+                      </span>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <p className="text-[13.5px] font-semibold text-black leading-snug">
+                            {p.title}
+                          </p>
+                          {p.github && p.github !== "#" && (
+                            <a
+                              href={p.github}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-black/35 hover:text-black print:hidden"
+                              title="GitHub"
+                            >
+                              <Github size={12} strokeWidth={1.5} />
+                            </a>
+                          )}
+                          {p.url && p.url !== "#" && (
+                            <a
+                              href={p.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-black/35 hover:text-black print:hidden"
+                              title="Project page"
+                            >
+                              <ExternalLink size={12} strokeWidth={1.5} />
+                            </a>
+                          )}
+                        </div>
+                        <p className="text-[12px] text-black/60 mt-0.5 leading-relaxed">
+                          {p.description}
+                        </p>
+                        <div className="flex flex-wrap gap-1.5 mt-1.5">
+                          {p.tags.map((t) => (
+                            <span
+                              key={t}
+                              className="font-mono text-[9px] tracking-wider uppercase px-1.5 py-0.5 border border-black/15 text-black/45"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <Divider />
+            </>
+          )}
 
           {/* ── Honors & Awards ── */}
           <div>
             <SectionTitle>Honors & Awards</SectionTitle>
             <div className="space-y-2.5">
-              {cvData.awards.map((a, i) => (
+              {awards.map((a, i) => (
                 <div key={i} className="flex items-start gap-6">
                   <span className="font-mono text-[11px] text-black/40 tabular-nums flex-shrink-0 w-10 text-right mt-0.5">
                     {a.year}
@@ -301,7 +255,7 @@ const CVPage = () => {
                     <p className="text-[13.5px] font-semibold text-black leading-snug">
                       {a.title}
                     </p>
-                    <p className="text-[12px] text-black/50">{a.org}</p>
+                    <p className="text-[12px] text-black/50">{a.organization}</p>
                   </div>
                 </div>
               ))}

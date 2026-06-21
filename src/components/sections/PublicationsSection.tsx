@@ -1,224 +1,15 @@
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ExternalLink, ChevronDown, Code, FileText } from "lucide-react";
-import { StaggerContainer, StaggerItem } from "@/components/FadeInView";
-
-interface Publication {
-  title: string;
-  authors: string;
-  venue: string;
-  venueShort: string;
-  year: number;
-  links: { label: string; url: string }[];
-}
-
-const publications: Publication[] = [
-  {
-    title: "SocialEval: Evaluating Social Intelligence of Large Language Models",
-    authors: "Jinfeng Zhou, Yuxuan Chen, Yihan Shi, Xuanming Zhang, Leqi Lei, Yi Feng, Zexuan Xiong, Miao Yan, Xunzhi Wang, Yaru Cao, Jianing Yin, Shuai Wang, Quanyu Dai, Zhenhua Dong, Hongning Wang, Minlie Huang",
-    venue: "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
-    venueShort: "ACL 2025",
-    year: 2025,
-    links: [
-      { label: "Paper", url: "https://aclanthology.org/2025.acl-long.1496/" },
-      { label: "Code", url: "https://github.com/thu-coai/SocialEval" },
-      { label: "arXiv", url: "https://arxiv.org/abs/2506.00900" },
-    ],
-  },
-  {
-    title: "Crisp: Cognitive Restructuring of Negative Thoughts through Multi-turn Supportive Dialogues",
-    authors: "Jinfeng Zhou, Yuxuan Chen, Jianing Yin, Yongkang Huang, Yihan Shi, Xikun Zhang, Libiao Peng, Rongsheng Zhang, Tangjie Lv, Zhipeng Hu, Hongning Wang, Minlie Huang",
-    venue: "Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing",
-    venueShort: "EMNLP 2025",
-    year: 2025,
-    links: [
-      { label: "Paper", url: "https://aclanthology.org/2025.emnlp-main.1652/" },
-      { label: "Code", url: "https://github.com/thu-coai/Crisp" },
-      { label: "arXiv", url: "https://arxiv.org/abs/2504.17238" },
-    ],
-  },
-  {
-    title: "HPSS: Heuristic Prompting Strategy Search for LLM Evaluators",
-    authors: "Bosi Wen, Pei Ke, Yufei Sun, Cunxiang Wang, Xiaotao Gu, Jinfeng Zhou, Jie Tang, Hongning Wang, Minlie Huang",
-    venue: "Findings of the Association for Computational Linguistics: ACL 2025",
-    venueShort: "ACL Findings 2025",
-    year: 2025,
-    links: [
-      { label: "Paper", url: "https://aclanthology.org/2025.findings-acl.1282/" },
-      { label: "Code", url: "https://github.com/thu-coai/HPSS" },
-    ],
-  },
-  {
-    title: "CharacterBench: Benchmarking Character Customization of Large Language Models",
-    authors: "Jinfeng Zhou, Yongkang Huang, Bosi Wen, Guanqun Bi, Yuxuan Chen, Pei Ke, Zhuang Chen, Xiyao Xiao, Libiao Peng, Kuntian Tang, Rongsheng Zhang, Le Zhang, Tangjie Lv, Zhipeng Hu, Hongning Wang, Minlie Huang",
-    venue: "The 39th Annual AAAI Conference on Artificial Intelligence",
-    venueShort: "AAAI 2025",
-    year: 2025,
-    links: [
-      { label: "Paper", url: "https://ojs.aaai.org/index.php/AAAI/article/view/34806" },
-      { label: "Code", url: "https://github.com/thu-coai/CharacterBench" },
-      { label: "arXiv", url: "https://arxiv.org/abs/2412.11912" },
-    ],
-  },
-  {
-    title: "Think Socially via Cognitive Reasoning",
-    authors: "Jinfeng Zhou, Zheyu Chen, Shuai Wang, Quanyu Dai, Zhenhua Dong, Hongning Wang, Minlie Huang",
-    venue: "arXiv preprint",
-    venueShort: "arXiv 2025",
-    year: 2025,
-    links: [
-      { label: "Paper", url: "https://arxiv.org/abs/2509.22546" },
-      { label: "Code", url: "https://github.com/thu-coai/CogFlow" },
-    ],
-  },
-  {
-    title: "EmoBench: Evaluating the Emotional Intelligence of Large Language Models",
-    authors: "Sahand Sabour, Siyang Liu, Zheyuan Zhang, June Liu, Jinfeng Zhou, Alvionna Sunaryo, Tatia Lee, Rada Mihalcea, Minlie Huang",
-    venue: "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
-    venueShort: "ACL 2024",
-    year: 2024,
-    links: [
-      { label: "Paper", url: "https://aclanthology.org/2024.acl-long.326/" },
-      { label: "Code", url: "https://github.com/Sahandfer/EmoBench" },
-      { label: "arXiv", url: "https://arxiv.org/abs/2402.12071" },
-    ],
-  },
-  {
-    title: "ToMBench: Benchmarking Theory of Mind in Large Language Models",
-    authors: "Zhuang Chen, Jincenzi Wu, Jinfeng Zhou, Bosi Wen, Guanqun Bi, Gongyao Jiang, Yaru Cao, Mengting Hu, Yunghwei Lai, Zexuan Xiong, Minlie Huang",
-    venue: "Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
-    venueShort: "ACL 2024",
-    year: 2024,
-    links: [
-      { label: "Paper", url: "https://aclanthology.org/2024.acl-long.847/" },
-      { label: "Code", url: "https://github.com/zhchen18/ToMBench" },
-    ],
-  },
-  {
-    title: "CharacterGLM: Customizing Social Characters with Large Language Models",
-    authors: "Jinfeng Zhou, Zhuang Chen, Dazhen Wan, Bosi Wen, Yi Song, Jifan Yu, Yongkang Huang, Pei Ke, Guanqun Bi, Libiao Peng, JiaMing Yang, Xiyao Xiao, Sahand Sabour, Xiaohan Zhang, Wenjing Hou, Yijia Zhang, Yuxiao Dong, Hongning Wang, Jie Tang, Minlie Huang",
-    venue: "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: Industry Track",
-    venueShort: "EMNLP 2024",
-    year: 2024,
-    links: [
-      { label: "Paper", url: "https://aclanthology.org/2024.emnlp-industry.107/" },
-      { label: "Code", url: "https://github.com/thu-coai/CharacterGLM-6B" },
-      { label: "arXiv", url: "https://arxiv.org/abs/2311.16832" },
-    ],
-  },
-  {
-    title: "Depression Detection in Clinical Interviews with LLM-Empowered Structural Element Graph",
-    authors: "Zhuang Chen, Jiawen Deng, Jinfeng Zhou, Jincenzi Wu, Tieyun Qian, Minlie Huang",
-    venue: "Proceedings of the 2024 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers)",
-    venueShort: "NAACL 2024",
-    year: 2024,
-    links: [
-      { label: "Paper", url: "https://aclanthology.org/2024.naacl-long.452/" },
-    ],
-  },
-  {
-    title: "Facilitating Multi-turn Emotional Support Conversation with Positive Emotion Elicitation: A Reinforcement Learning Approach",
-    authors: "Jinfeng Zhou, Zhuang Chen, Bo Wang, Minlie Huang",
-    venue: "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
-    venueShort: "ACL 2023",
-    year: 2023,
-    links: [
-      { label: "Paper", url: "https://aclanthology.org/2023.acl-long.96/" },
-      { label: "Code", url: "https://github.com/jfzhouyoo/Supporter" },
-    ],
-  },
-  {
-    title: "CASE: Aligning Coarse-to-Fine Cognition and Affection for Empathetic Response Generation",
-    authors: "Jinfeng Zhou, Chujie Zheng, Bo Wang, Zheng Zhang, Minlie Huang",
-    venue: "Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)",
-    venueShort: "ACL 2023",
-    year: 2023,
-    links: [
-      { label: "Paper", url: "https://aclanthology.org/2023.acl-long.457/" },
-      { label: "Code", url: "https://github.com/jfzhouyoo/CASE" },
-    ],
-  },
-  {
-    title: "CR-GIS: Improving Conversational Recommendation via Goal-aware Interest Sequence Modeling",
-    authors: "Jinfeng Zhou, Bo Wang, Zhitong Yang, Dongming Zhao, Kun Huang, Ruifang He, Yuexian Hou",
-    venue: "Proceedings of the 29th International Conference on Computational Linguistics",
-    venueShort: "COLING 2022",
-    year: 2022,
-    links: [
-      { label: "Paper", url: "https://aclanthology.org/2022.coling-1.32/" },
-    ],
-  },
-  {
-    title: "TopKG: Target-oriented Dialog via Global Planning on Knowledge Graph",
-    authors: "Zhitong Yang, Bo Wang, Jinfeng Zhou, Yue Tan, Dongming Zhao, Kun Huang, Ruifang He, Yuexian Hou",
-    venue: "Proceedings of the 29th International Conference on Computational Linguistics",
-    venueShort: "COLING 2022",
-    year: 2022,
-    links: [
-      { label: "Paper", url: "https://aclanthology.org/2022.coling-1.62/" },
-    ],
-  },
-  {
-    title: "CDConv: A Benchmark for Contradiction Detection in Chinese Conversations",
-    authors: "Chujie Zheng, Jinfeng Zhou, Yinhe Zheng, Libiao Peng, Zhen Guo, Wenquan Wu, Zheng-Yu Niu, Hua Wu, Minlie Huang",
-    venue: "Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing",
-    venueShort: "EMNLP 2022",
-    year: 2022,
-    links: [
-      { label: "Paper", url: "https://aclanthology.org/2022.emnlp-main.2/" },
-      { label: "Code", url: "https://github.com/thu-coai/CDConv" },
-    ],
-  },
-  {
-    title: "Aligning Recommendation and Conversation via Dual Imitation",
-    authors: "Jinfeng Zhou, Bo Wang, Minlie Huang, Dongming Zhao, Kun Huang, Ruifang He, Yuexian Hou",
-    venue: "Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing",
-    venueShort: "EMNLP 2022",
-    year: 2022,
-    links: [
-      { label: "Paper", url: "https://aclanthology.org/2022.emnlp-main.36/" },
-    ],
-  },
-  {
-    title: "CRFR: Improving Conversational Recommender Systems via Flexible Fragments Reasoning on Knowledge Graphs",
-    authors: "Jinfeng Zhou, Bo Wang, Ruifang He, Yuexian Hou",
-    venue: "Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing",
-    venueShort: "EMNLP 2021",
-    year: 2021,
-    links: [
-      { label: "Paper", url: "https://aclanthology.org/2021.emnlp-main.355/" },
-      { label: "Code", url: "https://github.com/jfzhouyoo/CRFR" },
-    ],
-  },
-];
-
-const AUTHOR_NAME = "Jinfeng Zhou";
-
-const highlightAuthor = (authors: string) => {
-  const parts = authors.split(AUTHOR_NAME);
-  if (parts.length === 1) return <>{authors}</>;
-  return (
-    <>
-      {parts.map((part, i) => (
-        <span key={i}>
-          {i > 0 && (
-            <strong className="text-foreground font-semibold underline decoration-foreground/25 underline-offset-2">
-              {AUTHOR_NAME}
-            </strong>
-          )}
-          {part}
-        </span>
-      ))}
-    </>
-  );
-};
+import { publications, AUTHOR_NAME, type Publication } from "@/data/publications";
 
 const venueBadgeStyle = (venueShort: string) => {
   const v = venueShort.toLowerCase();
   if (v.includes("arxiv") || v.includes("preprint"))
-    return "border border-dashed border-foreground/20 text-foreground/35";
+    return "border border-dashed border-foreground/25 text-black/60";
   if (v.includes("findings"))
-    return "border border-foreground/20 text-foreground/45 bg-foreground/[0.03]";
-  return "border border-foreground/30 text-foreground/55 bg-foreground/[0.04]";
+    return "border border-foreground/25 text-black/70 bg-foreground/[0.03]";
+  return "border border-foreground/35 text-black bg-foreground/[0.04]";
 };
 
 const linkIcon = (label: string) => {
@@ -227,7 +18,121 @@ const linkIcon = (label: string) => {
   return <ExternalLink size={11} strokeWidth={1.5} />;
 };
 
+const highlightAuthor = (pub: Publication) => {
+  const { authors, coFirst, corresponding } = pub;
+  const parts = authors.split(AUTHOR_NAME);
+  if (parts.length === 1) return <>{authors}</>;
+  const markers = [coFirst && "†", corresponding && "*"].filter(Boolean).join("");
+  return (
+    <>
+      {parts.map((part, i) => (
+        <span key={i}>
+          {i > 0 && (
+            <>
+              <strong className="text-foreground font-semibold underline decoration-foreground/25 underline-offset-2">
+                {AUTHOR_NAME}
+              </strong>
+              {markers && (
+                <sup className="font-mono text-[8px] font-medium ml-px">{markers}</sup>
+              )}
+            </>
+          )}
+          {part}
+        </span>
+      ))}
+    </>
+  );
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring" as const, damping: 25, stiffness: 120, mass: 0.8 },
+  },
+};
+
 const INITIAL_COUNT = 8;
+
+const PubEntry = ({
+  pub,
+  index,
+  total,
+}: {
+  pub: Publication;
+  index: number;
+  total: number;
+}) => (
+  <div
+    className={`group relative py-5 hover:bg-foreground/[0.015] transition-all duration-300 print:break-inside-avoid print:py-3 ${
+      index < total - 1 ? "border-b border-foreground/8" : ""
+    }`}
+  >
+    <div className="flex-1 min-w-0">
+      <div className="flex items-start gap-3">
+        <span className="font-mono text-[10px] text-foreground/20 flex-shrink-0 tabular-nums mt-[3px] w-5 text-right print:hidden">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-start justify-between gap-3">
+            <p className="font-heading font-semibold text-[15px] leading-snug flex-1 group-hover:text-foreground transition-colors duration-300 print:text-black">
+              {pub.title}
+            </p>
+            {/* Venue badge — desktop */}
+            <div className="hidden sm:flex items-center gap-2 flex-shrink-0 mt-0.5 print:hidden">
+              <span
+                className={`font-mono text-[9px] font-medium tracking-widest uppercase px-1.5 py-0.5 whitespace-nowrap ${venueBadgeStyle(pub.venueShort)}`}
+              >
+                {pub.venueShort}
+              </span>
+            </div>
+          </div>
+
+          {/* Authors */}
+          <p className="font-mono text-[11px] text-foreground/45 mt-1.5 leading-relaxed print:text-black">
+            {highlightAuthor(pub)}
+          </p>
+
+          {/* Venue full name */}
+          <p className="font-mono text-[11px] text-foreground/30 italic mt-0.5 print:text-black/60">
+            {pub.venue}
+          </p>
+
+          {/* Print-only: compact venue + year */}
+          <p className="hidden print:block font-mono text-[10px] text-black/40 mt-0.5">
+            {pub.venueShort} · {pub.year}
+          </p>
+
+          {/* Mobile venue badge */}
+          <div className="sm:hidden flex items-center gap-2 mt-1.5 print:hidden">
+            <span
+              className={`font-mono text-[9px] font-medium tracking-widest uppercase px-1.5 py-0.5 ${venueBadgeStyle(pub.venueShort)}`}
+            >
+              {pub.venueShort}
+            </span>
+          </div>
+
+          {/* Links */}
+          <div className="flex items-center gap-1.5 mt-3 print:hidden">
+            {pub.links.map((l) => (
+              <a
+                key={l.label}
+                href={l.url}
+                className="inline-flex items-center gap-1.5 font-mono text-[10px] font-medium tracking-wider uppercase text-foreground/45 hover:text-foreground border border-foreground/15 hover:border-foreground/50 px-2.5 py-1 hover:bg-foreground/[0.03] transition-all duration-200"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {linkIcon(l.label)}
+                {l.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 const PublicationsSection = () => {
   const [showAll, setShowAll] = useState(false);
@@ -244,9 +149,12 @@ const PublicationsSection = () => {
     };
   }, []);
 
-  const visiblePubs = isPrinting
-    ? publications
-    : publications.slice(0, showAll ? publications.length : INITIAL_COUNT);
+  const initialPubs = isPrinting ? publications : publications.slice(0, INITIAL_COUNT);
+  const extraPubs = isPrinting ? [] : publications.slice(INITIAL_COUNT);
+
+  const hasMarkers = publications.some((p) => p.coFirst || p.corresponding);
+  const hasCoFirst = publications.some((p) => p.coFirst);
+  const hasCorresponding = publications.some((p) => p.corresponding);
 
   return (
     <div>
@@ -260,89 +168,56 @@ const PublicationsSection = () => {
         </span>
       </div>
 
-      <StaggerContainer className="space-y-0">
-        {visiblePubs.map((pub, i) => {
-          return (
-            <StaggerItem key={i}>
-              <div
-                className={`group relative py-5 hover:bg-foreground/[0.015] transition-all duration-300 print:break-inside-avoid print:py-3 ${
-                  i < visiblePubs.length - 1 ? "border-b border-foreground/8" : ""
-                }`}
+      <div className="space-y-0">
+        {/* Initial items with stagger animation */}
+        {initialPubs.map((pub, i) => (
+          <motion.div
+            key={pub.title}
+            variants={itemVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.05 }}
+            transition={{ delay: i * 0.06 }}
+          >
+            <PubEntry pub={pub} index={i} total={publications.length} />
+          </motion.div>
+        ))}
+
+        {/* Extra items revealed by Show More */}
+        <AnimatePresence>
+          {showAll &&
+            extraPubs.map((pub, i) => (
+              <motion.div
+                key={pub.title}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{
+                  type: "spring",
+                  damping: 25,
+                  stiffness: 120,
+                  mass: 0.8,
+                  delay: i * 0.05,
+                }}
               >
-                <div className="flex-1 min-w-0">
-                  {/* Index + Title + Badge */}
-                  <div className="flex items-start gap-3">
-                    <span className="font-mono text-[10px] text-foreground/20 flex-shrink-0 tabular-nums mt-[3px] w-5 text-right print:hidden">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-3">
-                        <p className="font-heading font-semibold text-[15px] leading-snug flex-1 group-hover:text-foreground transition-colors duration-300 print:text-black">
-                          {pub.title}
-                        </p>
-                        {/* Venue badge — desktop only */}
-                        <div className="hidden sm:flex items-center gap-2 flex-shrink-0 mt-0.5 print:hidden">
-                          <span
-                            className={`font-mono text-[9px] font-medium tracking-widest uppercase px-1.5 py-0.5 whitespace-nowrap ${venueBadgeStyle(pub.venueShort)}`}
-                          >
-                            {pub.venueShort}
-                          </span>
-                          <span className="font-mono text-[11px] text-foreground/25 tabular-nums">
-                            {pub.year}
-                          </span>
-                        </div>
-                      </div>
+                <PubEntry
+                  pub={pub}
+                  index={INITIAL_COUNT + i}
+                  total={publications.length}
+                />
+              </motion.div>
+            ))}
+        </AnimatePresence>
+      </div>
 
-                      {/* Authors */}
-                      <p className="font-mono text-[11px] text-foreground/45 mt-1.5 leading-relaxed print:text-black">
-                        {highlightAuthor(pub.authors)}
-                      </p>
-
-                      {/* Venue full name */}
-                      <p className="font-mono text-[11px] text-foreground/30 italic mt-0.5 print:text-black/60">
-                        {pub.venue}
-                      </p>
-
-                      {/* Print-only: compact venue + year */}
-                      <p className="hidden print:block font-mono text-[10px] text-black/40 mt-0.5">
-                        {pub.venueShort} · {pub.year}
-                      </p>
-
-                      {/* Mobile venue badge */}
-                      <div className="sm:hidden flex items-center gap-2 mt-1.5 print:hidden">
-                        <span
-                          className={`font-mono text-[9px] font-medium tracking-widest uppercase px-1.5 py-0.5 ${venueBadgeStyle(pub.venueShort)}`}
-                        >
-                          {pub.venueShort}
-                        </span>
-                        <span className="font-mono text-[10px] text-foreground/25 tabular-nums">
-                          {pub.year}
-                        </span>
-                      </div>
-
-                      {/* Links */}
-                      <div className="flex items-center gap-1.5 mt-3 print:hidden">
-                        {pub.links.map((l) => (
-                          <a
-                            key={l.label}
-                            href={l.url}
-                            className="inline-flex items-center gap-1.5 font-mono text-[10px] font-medium tracking-wider uppercase text-foreground/45 hover:text-foreground border border-foreground/15 hover:border-foreground/50 px-2.5 py-1 hover:bg-foreground/[0.03] transition-all duration-200"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {linkIcon(l.label)}
-                            {l.label}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </StaggerItem>
-          );
-        })}
-      </StaggerContainer>
+      {/* Author marker legend */}
+      {hasMarkers && (
+        <p className="mt-3 font-mono text-[10px] text-foreground/35 print:text-black/50">
+          {hasCoFirst && "† Equal contribution"}
+          {hasCoFirst && hasCorresponding && " · "}
+          {hasCorresponding && "* Corresponding author"}
+        </p>
+      )}
 
       {publications.length > INITIAL_COUNT && !isPrinting && (
         <div className="print:hidden flex justify-center mt-6">
@@ -350,7 +225,9 @@ const PublicationsSection = () => {
             onClick={() => setShowAll(!showAll)}
             className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wider uppercase text-foreground/40 hover:text-foreground border border-foreground/15 hover:border-foreground/35 px-5 py-2 transition-all duration-200 hover:bg-foreground/[0.02]"
           >
-            {showAll ? "Show Less" : `Show More (${publications.length - INITIAL_COUNT})`}
+            {showAll
+              ? "Show Less"
+              : `Show More (${publications.length - INITIAL_COUNT})`}
             <ChevronDown
               size={12}
               strokeWidth={1.5}
