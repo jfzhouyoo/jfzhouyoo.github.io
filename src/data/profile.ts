@@ -15,6 +15,10 @@ export interface ProfileData {
   email: string;
   github: string;
   scholar: string;
+  advisorName: string;
+  advisorUrl: string;
+  labName: string;
+  labUrl: string;
   researchInterests: string;
   education: Education[];
 }
@@ -81,6 +85,10 @@ function parse(raw: string): ProfileData {
     email:             info.email             ?? "",
     github:            info.github            ?? "",
     scholar:           info.scholar           ?? "",
+    advisorName:       info.advisorName       ?? "",
+    advisorUrl:        info.advisorUrl        ?? "",
+    labName:           info.labName           ?? "",
+    labUrl:            info.labUrl            ?? "",
     researchInterests,
     education,
   };

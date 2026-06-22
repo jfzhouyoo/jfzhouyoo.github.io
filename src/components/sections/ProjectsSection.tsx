@@ -31,21 +31,29 @@ const ProjectsSection = () => {
     return (
       <div className="group block overflow-hidden node-card bg-background print:break-inside-avoid">
         {img && (
-          <div className="aspect-[4/3] overflow-hidden relative print:aspect-[3/2]">
-            <img
-              src={img}
-              alt={p.title}
-              className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 print:hidden" />
-            {href && href !== "#" && (
+          href && href !== "#" ? (
+            <a href={href} target="_blank" rel="noopener noreferrer" className="block aspect-[4/3] overflow-hidden relative print:aspect-[3/2]">
+              <img
+                src={img}
+                alt={p.title}
+                className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 print:hidden" />
               <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 print:hidden">
                 <span className="inline-flex items-center gap-1 font-mono text-[10px] font-medium tracking-wider uppercase text-background bg-foreground px-3 py-1.5">
                   View <ArrowUpRight size={10} strokeWidth={1.5} />
                 </span>
               </div>
-            )}
-          </div>
+            </a>
+          ) : (
+            <div className="aspect-[4/3] overflow-hidden relative print:aspect-[3/2]">
+              <img
+                src={img}
+                alt={p.title}
+                className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
+              />
+            </div>
+          )
         )}
 
         <div className="p-4 print:p-3">
@@ -98,7 +106,7 @@ const ProjectsSection = () => {
             </p>
           )}
 
-          <p className="font-mono text-[10px] text-foreground/40 mt-2 leading-relaxed line-clamp-2 print:text-black/70">
+          <p className="font-mono text-[10px] text-foreground/40 mt-2 leading-relaxed print:text-black/70">
             {p.description}
           </p>
           <div className="flex flex-wrap gap-1.5 mt-3">

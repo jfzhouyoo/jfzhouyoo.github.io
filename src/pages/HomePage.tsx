@@ -5,6 +5,7 @@ import PublicationsSection from "@/components/sections/PublicationsSection";
 import ProjectsSection from "@/components/sections/ProjectsSection";
 import HonorsSection from "@/components/sections/HonorsSection";
 import ContactSection from "@/components/sections/ContactSection";
+import { profile } from "@/data/profile";
 
 const HomePage = () => {
   return (
@@ -35,7 +36,7 @@ const HomePage = () => {
 
       <footer className="border-t border-foreground/10 py-8 text-center">
         <p className="font-mono text-[10px] text-foreground/25 tracking-[0.2em] uppercase">
-          © {new Date().getFullYear()} Your Name · Built with precision
+          © {new Date().getFullYear()} {profile.name} · Built with precision
         </p>
       </footer>
     </div>

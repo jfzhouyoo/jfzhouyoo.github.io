@@ -24,23 +24,26 @@
 #   image: fairnlp     →  src/assets/project-fairnlp.jpg
 #   image: portfolio   →  src/assets/project-portfolio.jpg
 
-title: LLM-Eval Toolkit
-description: Open-source framework for evaluating large language models across safety, helpfulness, and factuality.
-tags: Python, PyTorch, LLMs
+title: CharacterGLM
+description: The industry's first open-source role-playing LLM — with consistent character, memory, and persona, bridging the gap between intelligence and identity.
+tags: Commercial Use, LLM, Social Intelligence, EMNLP 2024
 year: 2024
+status: completed
+url: https://ai-topia.com/
+image: characterglm
+
+title: Emohaa
+description: The industry's first open-source LLM grounded in cognitive restructuring — grounded in clinical psychology, going beyond surface comfort.
+tags: Commercial Use, LLM, AI for Mental Health, EMNLP 2025
+year: 2025
+status: completed
+url: https://docs.bigmodel.cn/cn/guide/models/humanoid/emohaa
+image: emohaa
+
+title: AI Cosmos
+description: An Agent-native platform built for learners and researchers across every field,  where conversation becomes discovery and thinking becomes creation.
+tags: Commercial Use, Agent Infra, AI for Education
+year: 2026
 status: active
-image: llm-eval
-
-title: FairNLP
-description: Library for measuring and mitigating demographic biases in text classification pipelines.
-tags: Python, NLP, Fairness
-year: 2023
-status: completed
-image: fairnlp
-
-title: Academic Portfolio
-description: Clean, minimalist academic homepage template built with React and Tailwind CSS.
-tags: React, TypeScript, Tailwind
-year: 2024
-status: completed
-image: portfolio
+url: https://aicosmos.ai/
+image: aicosmos

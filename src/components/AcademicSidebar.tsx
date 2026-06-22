@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
-import profileImg from "@/assets/profile-placeholder.png";
+import profileImg from "@/assets/jinfeng.jpg";
 import { Mail, Github, GraduationCap, FileDown } from "lucide-react";
+import { profile } from "@/data/profile";
 
 const navItems = [
   { label: "About", path: "/" },
@@ -18,30 +19,27 @@ const AcademicSidebar = () => {
         <img
           src={profileImg}
           alt="Profile photo"
-          className="w-32 h-32 rounded-full object-cover mb-4 border-2 border-border"
+          className="w-32 h-auto block rounded-full mb-4 border-2 border-border"
         />
         <h1 className="font-heading text-xl font-bold text-foreground text-center">
-          Your Name
+          {profile.name}
         </h1>
         <p className="text-sm text-muted-foreground text-center mt-1">
-          Ph.D. Candidate
+          {profile.title}
         </p>
         <p className="text-sm text-muted-foreground text-center">
-          Department of Computer Science
-        </p>
-        <p className="text-sm text-muted-foreground text-center">
-          University Name
+          {profile.university}
         </p>
       </div>
 
       <div className="flex gap-3 mt-4 justify-center w-full">
-        <a href="mailto:your.email@university.edu" className="text-[#ea4335] hover:opacity-70 transition-colors" aria-label="Email">
+        <a href={`mailto:${profile.email}`} className="text-[#ea4335] hover:opacity-70 transition-colors" aria-label="Email">
           <Mail size={18} />
         </a>
-        <a href="https://github.com/yourusername" className="text-[#24292e] hover:opacity-70 transition-colors" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
+        <a href={profile.github} className="text-foreground/60 hover:opacity-70 transition-colors" aria-label="GitHub" target="_blank" rel="noopener noreferrer">
           <Github size={18} />
         </a>
-        <a href="https://scholar.google.com/" className="text-[#4285f4] hover:opacity-70 transition-colors" aria-label="Google Scholar" target="_blank" rel="noopener noreferrer">
+        <a href={profile.scholar} className="text-[#4285f4] hover:opacity-70 transition-colors" aria-label="Google Scholar" target="_blank" rel="noopener noreferrer">
           <GraduationCap size={18} />
         </a>
       </div>

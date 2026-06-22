@@ -51,9 +51,9 @@ const HonorsSection = () => {
               <div className="flex-1 min-w-0">
                 <p className="font-heading font-semibold text-[15px] leading-snug print:text-black">
                   {a.title}
-                </p>
-                <p className="text-[13px] text-foreground/45 mt-0.5 leading-relaxed print:text-black/60">
-                  {a.organization}
+                  <span className="font-mono font-normal text-[12px] text-foreground/40 ml-2 print:text-black/50">
+                    · {a.organization}
+                  </span>
                 </p>
               </div>
             </div>

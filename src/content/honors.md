@@ -6,6 +6,10 @@
 #   title        — award name (required)
 #   organization — awarding organization (required)
 
+year: 2026
+title: First-Class Scholarship & Sohu Scholarship
+organization: Tsinghua University & Sohu
+
 year: 2025
 title: Second Prize in the 43rd "Challenge Cup"
 organization: Tsinghua University

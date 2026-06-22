@@ -1,5 +1,6 @@
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { useState, useEffect } from "react";
+import { profile } from "@/data/profile";
 
 const sections = [
   { id: "about", label: "About" },
@@ -38,7 +39,7 @@ const NavBar = () => {
           onClick={(e) => { e.preventDefault(); scrollTo("about"); }}
           className="font-mono text-xs font-medium tracking-[0.2em] uppercase text-foreground"
         >
-          YOUR NAME
+          {profile.name}
         </a>
         <ul className="flex items-center gap-0">
           {sections.map((s) => (
